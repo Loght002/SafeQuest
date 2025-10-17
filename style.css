@@ -18,8 +18,8 @@ html, body {
 }
 
 #game-container {
-    width: 900px; /* MUDANÇA */
-    height: 800px; /* MUDANÇA */
+    width: 900px;
+    height: 800px;
     border: 6px solid #0b132b;
     background-color: #3a506b;
     display: flex;
@@ -40,12 +40,11 @@ html, body {
     color: white;
 }
 
-#score-container, #timer-container, #goal-container {
+#score-container, #timer-container {
     font-size: 1.5em;
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-    flex-basis: 33%;
-    text-align: center;
+    flex-basis: 50%;
 }
 #score-container { text-align: left; }
 #timer-container { text-align: right; }
@@ -64,92 +63,43 @@ html, body {
 /* --- Painel Elétrico Principal --- */
 #electrical-panel {
     flex-grow: 1;
-    
-    background-color: #1a5d97;
     position: relative;
-    overflow: hidden;
-    padding: 150px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-image: url('https://www.transparenttextures.com/patterns/metal-panel.png');
+    background-image: url('Assets/Sprites - Cor Padrão/Painel elétrico interno - cor padrão.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: filter 0.5s ease; /* Para o efeito de brilho */
 }
 
-.panel-alert-flash {
-    animation: flash-red 0.4s ease;
+.panel-error-flash {
+    animation: flash-red 0.3s ease;
 }
 
 @keyframes flash-red {
-    0%, 100% { box-shadow: inset 0 0 0 0 rgba(255, 29, 54, 0); }
-    50% { box-shadow: inset 0 0 50px 25px #ffc107; }
+    0%, 100% { box-shadow: inset 0 0 0 0 rgba(255, 0, 0, 0); }
+    50% { box-shadow: inset 0 0 100px 50px rgba(255, 0, 0, 0.7); }
 }
 
-/* --- Fileiras Horizontais com Fios Verticais --- */
-.wire-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: 45%;
-}
-
+/* --- Fios (Agora posicionados aleatoriamente) --- */
 .wire {
-    width: 22px; /* MUDANÇA: Fio um pouco mais fino para o novo painel */
-    height: 100%;
-    border-radius: 10px;
-    position: relative;
-    transition: all 0.3s ease;
-    border: 2px solid #343a40;
-    background: linear-gradient(180deg, #adb5bd, #dee2e6, #adb5bd);
-    box-shadow: 2px 0 4px rgba(0,0,0,0.4);
+    width: 60px;  /* Tamanho visível do sprite */
+    height: 200px; /* Tamanho visível do sprite */
+    position: absolute; /* ESSENCIAL para posicionamento aleatório */
+    
+    background-image: url('Assets/Sprites - Cor Padrão/fio consertado - padrão.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .wire.broken {
-    background: #ffc107;
+    background-image: url('Assets/Sprites - Cor Padrão/fio faiscado paleta normal .png');
     cursor: pointer;
-    animation: spark-glow 1s infinite alternate;
 }
 
-.wire.broken::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: spark-effect 0.15s infinite;
-    box-shadow: 0 0 15px 5px #fff, 0 0 25px 10px #ffc107;
+.wire.fixed {
+    background-image: url('Assets/Sprites - Cor Padrão/fio concertado .png');
 }
-
-@keyframes spark-glow {
-    from { box-shadow: 0 0 10px #ffc107; }
-    to { box-shadow: 0 0 30px #ffc107, 0 0 10px #fff; }
-}
-
-@keyframes spark-effect {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
-}
-
-.wire.fixed::after {
-    content: '';
-    position: absolute;
-    width: 32px; /* Ajustado para o novo fio */
-    height: 30px;
-    background-color: #343a40;
-    border-radius: 4px;
-    top: calc(50% - 15px);
-    left: -6px; /* Ajustado para o novo fio */
-    z-index: 1;
-    border: 2px solid black;
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
-
 
 /* --- UI Inferior (Arara e Fita) --- */
 #ui-bottom {
@@ -161,10 +111,15 @@ html, body {
     color: white;
 }
 
-#arara-container, #tape-container {
-    flex-basis: 33%;
+#arara-container {
+    display: flex;
+    align-items: center;
+    flex-basis: 50%;
 }
-#tape-container { text-align: center; }
+#tape-container { 
+    flex-basis: 50%;
+    text-align: center; 
+}
 
 #arara-sprite {
     width: 100px;
@@ -176,23 +131,22 @@ html, body {
     background-color: #fff;
     color: #333;
     padding: 10px;
-    border-radius: 0px;
     margin-left: 15px;
     max-width: 250px;
     position: relative;
     font-size: 1em;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    border: 3px solid #0b132b;
+    border-radius: 0;
 }
 
 #tape {
     width: 70px;
     height: 70px;
-    border: 4px solid #343a40;
-    border-radius: 100%;
     cursor: grab;
-    background-image: url('\Assets\Sprites - Cor Padrão\Fita isolante .png');
-    background-size: cover;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    background-image: url('Assets/Sprites - Cor Padrão/Fita isolante .png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     transition: transform 0.2s ease;
     margin: 0 auto;
 }
@@ -223,7 +177,7 @@ html, body {
 }
 
 #restart-button {
-    background-color: #5bc0be;
+    background-color: #27ae60;
     border: none;
     color: white;
     padding: 15px 30px;
@@ -235,4 +189,4 @@ html, body {
     transition: background-color 0.3s ease;
 }
 
-#restart-button:hover { background-color: #6fffe9; }
+#restart-button:hover { background-color: #2ecc71; }

@@ -1,111 +1,76 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Referências aos Elementos do DOM ---
+    // --- Referências ao DOM ---
     const gameContainer = document.getElementById('game-container');
     const gamePanel = document.getElementById('electrical-panel');
     const timerDisplay = document.getElementById('timer');
-    const brokenWiresCountDisplay = document.getElementById('broken-wires-count');
     const wiresFixedTotalDisplay = document.getElementById('wires-fixed-total');
+    const araraSprite = document.getElementById('arara-sprite');
     const araraSpeechBubble = document.getElementById('arara-speech-bubble');
     const tape = document.getElementById('tape');
     const endGameModal = document.getElementById('end-game-modal');
     const endGameTitle = document.getElementById('end-game-title');
-    const endGameMessage = document.getElementById('end-game-message');
+    const finalScoreText = document.getElementById('final-score-text');
+    const finalRatingText = document.getElementById('final-rating-text');
     const restartButton = document.getElementById('restart-button');
 
-    // --- Variáveis de Controle do Jogo ---
-    const TOTAL_WIRES = 16;
-    const WIRES_PER_ROW = 8;
-    const GOAL_TO_WIN = 30;
-    const INITIAL_TIME = 60;
+    // --- Variáveis de Controle do Jogo (Baseado no LDD) ---
+    const TOTAL_WIRES_GOAL = 20;
+    const INITIAL_TIME = 90;
     
     let timer;
     let timerInterval;
-    let wireBreakTimeout;
-    let brokenWires = 0;
     let wiresFixedTotal = 0;
     let gameActive = false;
+    let activeWires = 0;
+    
+    // --- Mensagens da Arara (Baseado no LDD) ---
+    const araraMessages = {
+        start: "Os fios da nave estão em curto! Use a fita isolante e evite um desastre!",
+        correct: "Excelente! Um fio a menos em risco!",
+        incorrect: "Cuidado! Toque errado pode causar choque!",
+        goodJob: "Isso! Assim você impede o choque!",
+        end: "Todos os fios foram isolados! Energia estabilizada. Você salvou a nave!"
+    };
 
-    // --- Lógica de Redimensionamento da Tela ---
+    // --- Lógica de Redimensionamento ---
     function resizeGame() {
-        // MUDANÇA: Atualizado para as novas dimensões base
         const scale = Math.min(window.innerWidth / 900, window.innerHeight / 800);
         gameContainer.style.transform = `scale(${scale})`;
     }
     window.addEventListener('resize', resizeGame);
 
-    // --- Mensagens da Arara ---
-    const araraMessages = {
-        start: "O painel está instável! Conserte " + GOAL_TO_WIN + " fios antes que o tempo acabe!",
-        fixSuccess: ["Bom trabalho!", "Continue assim!", "Excelente!", "Você é rápido nisso!"],
-        win: "Incrível! Você consertou todos os fios necessários e salvou a nave!",
-        loseTime: "O tempo acabou! O sistema entrou em colapso...",
-    };
-
-    function speak(message) { araraSpeechBubble.textContent = message; }
-    function speakRandom(messageArray) {
-        const msg = messageArray[Math.floor(Math.random() * messageArray.length)];
-        speak(msg);
+    function speak(message) {
+        araraSpeechBubble.textContent = message;
     }
-    
-    // --- Funções Principais do Jogo ---
 
+    // --- Lógica Principal do Jogo ---
     function startGame() {
         resizeGame();
         
         gameActive = true;
         timer = INITIAL_TIME;
-        brokenWires = 0;
         wiresFixedTotal = 0;
-        
-        // Reset da UI
+        activeWires = 0;
+
         timerDisplay.textContent = timer;
-        brokenWiresCountDisplay.textContent = brokenWires;
-        wiresFixedTotalDisplay.textContent = `${wiresFixedTotal} / ${GOAL_TO_WIN}`;
+        wiresFixedTotalDisplay.textContent = `${wiresFixedTotal} / ${TOTAL_WIRES_GOAL}`;
         timerDisplay.classList.remove('low-time');
         gamePanel.innerHTML = '';
         endGameModal.classList.add('hidden');
+        gamePanel.style.filter = 'brightness(1)';
+
         speak(araraMessages.start);
         
         clearInterval(timerInterval);
-        clearTimeout(wireBreakTimeout);
-
-        setupWires();
-        
         timerInterval = setInterval(updateTimer, 1000);
-        scheduleNextWireBreak();
+        
+        // Inicia o jogo com a primeira etapa
+        updateDifficulty(); 
     }
 
-    function setupWires() {
-        const row1 = document.createElement('div');
-        row1.className = 'wire-row';
-        const row2 = document.createElement('div');
-        row2.className = 'wire-row';
-
-        for (let i = 0; i < TOTAL_WIRES; i++) {
-            const wire = document.createElement('div');
-            wire.classList.add('wire');
-            wire.dataset.id = i;
-
-            wire.addEventListener('dragover', e => {
-                if (wire.classList.contains('broken')) e.preventDefault();
-            });
-            wire.addEventListener('drop', e => {
-                e.preventDefault();
-                if (wire.classList.contains('broken')) fixWire(wire);
-            });
-
-            if (i < WIRES_PER_ROW) {
-                row1.appendChild(wire);
-            } else {
-                row2.appendChild(wire);
-            }
-        }
-        gamePanel.appendChild(row1);
-        gamePanel.appendChild(row2);
-    }
-    
     function updateTimer() {
         if (!gameActive) return;
+
         timer--;
         timerDisplay.textContent = timer;
 
@@ -114,80 +79,149 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (timer <= 0) {
-            endGame(false);
+            endGame();
         }
     }
 
-    function scheduleNextWireBreak() {
-        if (!gameActive) return;
-        const randomInterval = Math.random() * 3000 + 1000;
-        
-        wireBreakTimeout = setTimeout(() => {
-            breakRandomWire();
-            scheduleNextWireBreak();
-        }, randomInterval);
+    function getDifficultyStage() {
+        if (wiresFixedTotal <= 3) return 1; // Etapa 1
+        if (wiresFixedTotal <= 8) return 2; // Etapa 2
+        if (wiresFixedTotal <= 14) return 3; // Etapa 3
+        return 4; // Etapa 4
     }
 
-
-
-    function breakRandomWire() {
+    function updateDifficulty() {
         if (!gameActive) return;
-        const availableWires = document.querySelectorAll('.wire:not(.broken)');
-        if (availableWires.length === 0) return;
 
-        const wireToBreak = availableWires[Math.floor(Math.random() * availableWires.length)];
+        const stage = getDifficultyStage();
+        let maxWires = 0;
+        let spawnInterval = 0;
+
+        switch (stage) {
+            case 1: // Poucos fios, devagar
+                maxWires = 3;
+                spawnInterval = 3000;
+                break;
+            case 2: // Mais fios
+                maxWires = 5;
+                spawnInterval = 2500;
+                break;
+            case 3: // Fios mais rápidos
+                maxWires = 7;
+                spawnInterval = 1800;
+                break;
+            case 4: // Emergência
+                maxWires = 10;
+                spawnInterval = 1200;
+                break;
+        }
+
+        if (activeWires < maxWires) {
+            spawnWire();
+        }
+
+        setTimeout(updateDifficulty, spawnInterval);
+    }
+    
+    function spawnWire() {
+        if (!gameActive || wiresFixedTotal >= TOTAL_WIRES_GOAL) return;
+
+        const wire = document.createElement('div');
+        wire.classList.add('wire', 'broken');
+
+        // Posição aleatória DENTRO do painel
+        // Esses valores (15, 70, 20, 80) definem a área útil interna do painel
+        const top = Math.random() * 55 + 15; // %
+        const left = Math.random() * 60 + 20; // %
+        wire.style.top = `${top}%`;
+        wire.style.left = `${left}%`;
         
-        wireToBreak.classList.remove('fixed');
-        wireToBreak.classList.add('broken');
-        brokenWires++;
-        brokenWiresCountDisplay.textContent = brokenWires;
+        wire.addEventListener('dragover', e => e.preventDefault());
+        wire.addEventListener('drop', e => {
+            e.preventDefault();
+            fixWire(wire);
+        });
 
-        gamePanel.classList.add('panel-alert-flash');
-        setTimeout(() => gamePanel.classList.remove('panel-alert-flash'), 350);
+        gamePanel.appendChild(wire);
+        activeWires++;
     }
 
     function fixWire(wire) {
-        if (!gameActive) return;
+        if (!gameActive || !wire.classList.contains('broken')) return;
 
         wire.classList.remove('broken');
         wire.classList.add('fixed');
+        activeWires--;
         
-        brokenWires--;
-        brokenWiresCountDisplay.textContent = brokenWires;
-
-        timer = Math.min(INITIAL_TIME, timer + 3);
-        timerDisplay.textContent = timer;
-
         wiresFixedTotal++;
-        wiresFixedTotalDisplay.textContent = `${wiresFixedTotal} / ${GOAL_TO_WIN}`;
+        wiresFixedTotalDisplay.textContent = `${wiresFixedTotal} / ${TOTAL_WIRES_GOAL}`;
+        
+        timer = Math.min(INITIAL_TIME, timer + 5); // Adiciona +5s
+        timerDisplay.textContent = timer;
+        
+        speak(araraMessages.correct);
+        setTimeout(() => speak(araraMessages.goodJob), 2000);
 
-        speakRandom(araraMessages.fixSuccess);
+        // Aumenta o brilho do painel
+        let currentBrightness = parseFloat(gamePanel.style.filter.replace('brightness(', '') || 1);
+        gamePanel.style.filter = `brightness(${Math.min(1, currentBrightness + 0.05)})`;
 
-        if (wiresFixedTotal >= GOAL_TO_WIN) {
-            endGame(true);
+        if (wiresFixedTotal >= TOTAL_WIRES_GOAL) {
+            endGame(); // Venceu ao atingir a meta
         }
     }
 
-    function endGame(victory) {
+    function penalize() {
+        if (!gameActive) return;
+
+        timer -= 3; // Remove 3s
+        timerDisplay.textContent = timer;
+        
+        gamePanel.classList.add('panel-error-flash');
+        setTimeout(() => gamePanel.classList.remove('panel-error-flash'), 300);
+        
+        speak(araraMessages.incorrect);
+
+        // Diminui o brilho do painel
+        let currentBrightness = parseFloat(gamePanel.style.filter.replace('brightness(', '') || 1);
+        gamePanel.style.filter = `brightness(${Math.max(0.3, currentBrightness - 0.1)})`;
+    }
+
+    function endGame() {
         if (!gameActive) return;
         gameActive = false;
         clearInterval(timerInterval);
-        clearTimeout(wireBreakTimeout);
 
-        if (victory) {
-            endGameTitle.textContent = "Vitória!";
-            endGameMessage.textContent = `Você consertou ${GOAL_TO_WIN} fios e estabilizou o painel. Parabéns!`;
-            speak(araraMessages.win);
+        speak(araraMessages.end);
+
+        // Avaliação por estrelas (Baseado no LDD)
+        let rating = "";
+        let stars = "";
+        if (wiresFixedTotal <= 10) {
+            rating = "Técnico Iniciante";
+            stars = "⭐";
+        } else if (wiresFixedTotal <= 16) {
+            rating = "Técnico Responsável";
+            stars = "⭐⭐";
         } else {
-            endGameTitle.textContent = "Tempo Esgotado!";
-            endGameMessage.textContent = `Você não atingiu a meta a tempo... Consertou ${wiresFixedTotal} de ${GOAL_TO_WIN} fios.`;
-            speak(araraMessages.loseTime);
+            rating = "Guardião da Nave";
+            stars = "⭐⭐⭐";
         }
         
+        finalScoreText.textContent = `Você reparou ${wiresFixedTotal} de ${TOTAL_WIRES_GOAL} fios!`;
+        finalRatingText.textContent = `Pontuação: ${stars} (${rating})`;
         endGameModal.classList.remove('hidden');
     }
 
+    // --- Event Listeners ---
+    gamePanel.addEventListener('click', (e) => {
+        if (e.target === gamePanel) {
+            penalize();
+        }
+    });
+
     restartButton.addEventListener('click', startGame);
 
+    // Início do Jogo
     startGame();
 });

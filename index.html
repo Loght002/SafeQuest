@@ -14,14 +14,11 @@
         <div id="game-container">
             <div id="ui-top">
                 <div id="score-container">
-                    <p>Quebrados: <span id="broken-wires-count">0</span></p>
-                </div>
-                <div id="goal-container">
-                    <p>Consertados: <span id="wires-fixed-total">0</span> / 30</p>
+                    <p>Fios Consertados: <span id="wires-fixed-total">0</span> / 20</p>
                 </div>
                 <div id="timer-container">
                     <span>TEMPO:</span>
-                    <span id="timer">60</span>
+                    <span id="timer">90</span>
                 </div>
             </div>
 
@@ -30,13 +27,12 @@
 
             <div id="ui-bottom">
                 <div id="arara-container">
-                    <img src="\Assets\Sprites - Cor Padrão\Arara - cor padrão.png" alt="Arara Azul" id="arara-sprite">
+                    <img src="Assets/Sprites - Cor Padrão/Arara - cor padrão.png" alt="Arara Azul" id="arara-sprite">
                     <div id="arara-speech-bubble">
-                        O painel está instável! Conserte 30 fios antes que o tempo acabe!
+                        Os fios da nave estão em curto! Use a fita isolante e evite um desastre!
                     </div>
                 </div>
                 <div id="tape-container">
-                    <img src="\Assets\Sprites - Cor Padrão\Fita isolante .png" alt="Fita Isolante" id="tape-sprite">
                     <div id="tape" draggable="true"></div>
                     <p>Fita Isolante</p>
                 </div>
@@ -46,8 +42,9 @@
     
     <div id="end-game-modal" class="hidden">
         <div class="modal-content">
-            <h2 id="end-game-title">Vitória!</h2>
-            <p id="end-game-message">Você sobreviveu e manteve a energia da nave segura!</p>
+            <h2 id="end-game-title">Energia Estabilizada!</h2>
+            <p id="final-score-text">Você reparou X de 20 fios!</p>
+            <p id="final-rating-text">Pontuação: ⭐⭐ (Técnico Responsável)</p>
             <button id="restart-button">Jogar Novamente</button>
         </div>
     </div>
