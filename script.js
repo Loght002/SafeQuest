@@ -57,15 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function createWires() {
     const rows = 2;
     const cols = 10;
-    const spacingX = 2; // espaçamento percentual horizontal
-    const spacingY = 35; // altura das duas linhas
+    const spacingX = 3; // Aumenta o espaçamento para distribuir os fios
+    const spacingY = 55; // Mantém a altura das duas linhas
+    const startingLeft = 24.5; // Posição inicial calculada para centralizar
 
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         const wire = document.createElement('div');
         wire.classList.add('wire', 'fixed');
         wire.style.top = `${20 + r * spacingY}%`;
-        wire.style.left = `${10 + c * spacingX}%`;
+        // Nova fórmula para a posição horizontal que centraliza os fios
+        wire.style.left = `${startingLeft + c * spacingX}%`;
         wire.dataset.row = r;
         wire.dataset.col = c;
         gamePanel.appendChild(wire);
