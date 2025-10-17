@@ -1,192 +1,191 @@
-/* --- Configurações Globais --- */
+/* === ESTILO PREMIUM FUTURISTA === */
 html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #1c2541;
-    font-family: 'Roboto', sans-serif;
+  height: 100%;
+  margin: 0;
+  background: radial-gradient(circle at center, #1a1635 0%, #0b0b19 100%);
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  overflow: hidden;
 }
 
 #game-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 #game-container {
-    width: 900px;
-    height: 800px;
-    border: 6px solid #0b132b;
-    background-color: #3a506b;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transform-origin: center center;
-    border-radius: 10px;
+  width: 900px;
+  height: 800px;
+  border: 4px solid #3e1bdb;
+  background: linear-gradient(180deg, #20264a 0%, #14182b 100%);
+  border-radius: 12px;
+  box-shadow: 0 0 50px rgba(121, 82, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
 }
 
-/* --- UI Superior (Timer e Contagem) --- */
+/* === UI SUPERIOR === */
 #ui-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #1a5d97;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: rgba(44, 32, 80, 0.8);
+  border-bottom: 2px solid #4b32ff;
+  font-family: 'Orbitron', sans-serif;
 }
 
 #score-container, #timer-container {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-    flex-basis: 50%;
+  font-size: 1.4em;
+  text-shadow: 0 0 6px #6a3cff;
 }
-#score-container { text-align: left; }
-#timer-container { text-align: right; }
 
 #timer.low-time {
-    color: #e71d36;
-    animation: pulse 1s infinite;
+  color: #ff4040;
+  animation: pulse 1s infinite;
 }
-
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+  0%,100% { transform: scale(1); text-shadow: 0 0 5px red; }
+  50% { transform: scale(1.1); text-shadow: 0 0 20px red; }
 }
 
-/* --- Painel Elétrico Principal --- */
+/* === PAINEL ELÉTRICO === */
 #electrical-panel {
-    flex-grow: 1;
-    position: relative;
-    background-image: url('Assets/Sprites - Cor Padrão/Painel elétrico interno - cor padrão.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: filter 0.5s ease; /* Para o efeito de brilho */
+  flex: 1;
+  position: relative;
+  background-image: url('Assets/Sprites - Cor Padrão/Painel elétrico interno - cor padrão.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(1);
+  transition: filter 0.4s ease;
+  box-shadow: inset 0 0 100px rgba(90, 55, 255, 0.2);
+  border-bottom: 2px solid #4b32ff;
 }
 
 .panel-error-flash {
-    animation: flash-red 0.3s ease;
+  animation: flash-red 0.3s ease;
 }
-
 @keyframes flash-red {
-    0%, 100% { box-shadow: inset 0 0 0 0 rgba(255, 0, 0, 0); }
-    50% { box-shadow: inset 0 0 100px 50px rgba(255, 0, 0, 0.7); }
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(0.3) contrast(1.5) saturate(2); }
 }
 
-/* --- Fios (Agora posicionados aleatoriamente) --- */
+/* === FIOS === */
 .wire {
-    width: 60px;  /* Tamanho visível do sprite */
-    height: 200px; /* Tamanho visível do sprite */
-    position: absolute; /* ESSENCIAL para posicionamento aleatório */
-    
-    background-image: url('Assets/Sprites - Cor Padrão/fio consertado - padrão.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  width: 60px;
+  height: 200px;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.2s, filter 0.3s;
 }
 
 .wire.broken {
-    background-image: url('Assets/Sprites - Cor Padrão/fio faiscado paleta normal .png');
-    cursor: pointer;
+  background-image: url('Assets/Sprites - Cor Padrão/fio faiscado paleta normal .png');
+  cursor: pointer;
+  animation: spark 0.3s infinite;
+}
+@keyframes spark {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.8) drop-shadow(0 0 5px #ffcc00); }
 }
 
 .wire.fixed {
-    background-image: url('Assets/Sprites - Cor Padrão/fio concertado .png');
+  background-image: url('Assets/Sprites - Cor Padrão/fio concertado .png');
+  filter: brightness(1.3);
 }
 
-/* --- UI Inferior (Arara e Fita) --- */
+/* === UI INFERIOR === */
 #ui-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 10px;
-    background-color: #1a5d97;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 20px;
+  background: rgba(44, 32, 80, 0.9);
+  border-top: 2px solid #4b32ff;
 }
 
 #arara-container {
-    display: flex;
-    align-items: center;
-    flex-basis: 50%;
-}
-#tape-container { 
-    flex-basis: 50%;
-    text-align: center; 
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 #arara-sprite {
-    width: 100px;
-    height: auto;
-    filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.5));
+  width: 100px;
+  filter: drop-shadow(0 0 8px #1af0ff);
 }
 
 #arara-speech-bubble {
-    background-color: #fff;
-    color: #333;
-    padding: 10px;
-    margin-left: 15px;
-    max-width: 250px;
-    position: relative;
-    font-size: 1em;
-    border: 3px solid #0b132b;
-    border-radius: 0;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid #4b32ff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  max-width: 260px;
+  font-size: 0.95em;
+  position: relative;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 15px rgba(80, 60, 255, 0.4);
+}
+#arara-speech-bubble::after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #4b32ff;
 }
 
-#tape {
-    width: 70px;
-    height: 70px;
-    cursor: grab;
-    background-image: url('Assets/Sprites - Cor Padrão/Fita isolante .png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: transform 0.2s ease;
-    margin: 0 auto;
+#tape-container {
+  text-align: center;
 }
-#tape:hover { transform: scale(1.1); }
-#tape:active { cursor: grabbing; transform: scale(0.9); }
-
-/* --- Modal de Fim de Jogo --- */
-.hidden { display: none !important; }
-
-#end-game-modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+.wire {
+  width: 50px;
+  height: 160px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  transition: filter 0.3s ease, transform 0.2s;
 }
 
-.modal-content {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    color: #333;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+.wire.fixed {
+  background-image: url('Assets/Sprites - Cor Padrão/fio concertado .png');
+  filter: brightness(1.2);
+}
+
+.wire.broken {
+  background-image: url('Assets/Sprites - Cor Padrão/fio faiscado paleta normal .png');
+  cursor: pointer;
+  animation: spark 0.3s infinite;
+}
+
+@keyframes spark {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(2) drop-shadow(0 0 5px #ffcc00); }
 }
 
 #restart-button {
-    background-color: #27ae60;
-    border: none;
-    color: white;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
+  background: linear-gradient(90deg, #5f3df7, #9a66ff);
+  border: none;
+  color: white;
+  padding: 15px 40px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
-#restart-button:hover { background-color: #2ecc71; }
+#restart-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #9a66ff;
+}
