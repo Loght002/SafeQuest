@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeQuest - Fase 3: Cuidado com os Fios!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="orientation-warning">
+      <h2>Vire o seu dispositivo</h2>
+      <p>Para uma melhor experiência, por favor, jogue com a tela na horizontal.</p>
+  </div>
+
+  <div id="start-screen" class="modal">
+    <div class="modal-content">
+        <h1>SafeQuest</h1>
+        <h2>Fase: Reparo Elétrico</h2>
+        <p>A energia da nave está instável! Arraste a fita isolante para consertar os fios expostos antes que o tempo acabe.</p>
+        <button id="start-button">Começar Jogo!</button>
+    </div>
+  </div>
+  
+  <div id="game-wrapper">
+    <div id="game-container">
+      <div id="ui-top">
+        <div id="score-container">
+          <p>Fios Consertados: <span id="wires-fixed-total">0</span></p>
+        </div>
+        <div id="timer-container">
+          <span>TEMPO:</span>
+          <span id="timer">90</span>
+        </div>
+      </div>
+
+      <div id="electrical-panel"></div>
+
+      <div id="ui-bottom">
+        <div id="arara-container">
+          <img src="Assets/Sprites - Cor Padrão/Arara - cor padrão.png" alt="Arara Azul" id="arara-sprite">
+          <div id="arara-speech-bubble">
+            Arraste a fita isolante até os fios em curto para consertá-los!
+          </div>
+        </div>
+        <div id="tape-container">
+          <div id="tape" draggable="true"></div>
+          <p>Fita Isolante</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="end-game-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="end-game-title">Energia Estabilizada!</h2>
+      <p id="final-score-text">Você reparou X de 25 fios!</p>
+      <p id="final-rating-text">Pontuação: ⭐⭐ (Técnico Responsável)</p>
+      <button id="restart-button">Jogar Novamente</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

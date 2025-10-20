@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="titulo_pagina">SafeQuest - Guardião da Reciclagem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fase2style.css">
+</head>
+<body class="bg-gray-800 flex items-center justify-center min-h-screen">
+
+    <div id="game-container" class="game-container w-full max-w-[1200px] aspect-video rounded-none md:rounded-2xl shadow-2xl flex flex-col relative overflow-hidden">
+        
+        <div id="start-screen" class="modal absolute inset-0 flex flex-col items-center justify-center z-50">
+            <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center">
+                <h1 class="text-5xl font-bold mb-4 text-cyan-400" data-key="titulo_principal">SafeQuest</h1>
+                <h2 class="text-2xl mb-8" data-key="subtitulo_fase">Fase 2: Guardião da Reciclagem</h2>
+                <p class="mb-8 max-w-lg" data-key="intro_texto">O rio precisa da sua ajuda! Arraste cada tipo de lixo para a lixeira correta para limpar o ambiente. Seja rápido e ganhe tempo bônus!</p>
+                <button id="start-button" data-key="btn_comecar" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-2xl transition-transform transform hover:scale-105">Começar!</button>
+            </div>
+        </div>
+
+        <div id="stage-transition-screen" class="modal absolute inset-0 flex-col items-center justify-center z-40 hidden">
+            <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center max-w-2xl">
+                <h2 id="stage-title" class="text-4xl font-bold mb-4 text-amber-400"></h2>
+                <div class="flex items-center justify-center">
+                    <img id="stage-macaw-sprite" src="" alt="Arara" class="w-32 h-32 mr-6">
+                    <p id="stage-explanation" class="text-lg text-left"></p>
+                </div>
+                <button id="next-stage-button" data-key="btn_continuar" class="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg text-xl transition-transform transform hover:scale-105">Continuar</button>
+            </div>
+        </div>
+
+        <div id="end-screen" class="modal absolute inset-0 flex-col items-center justify-center z-50 hidden">
+            <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center">
+                <h1 id="end-title" class="text-5xl font-bold mb-4">Tempo Esgotado!</h1> 
+                <p class="text-2xl mb-4">
+                    <span id="end-score-text-before" data-key="end_score_text">Você reciclou</span> 
+                    <span id="final-score" class="font-bold text-yellow-400">0</span> 
+                    <span id="end-score-text-after" data-key="end_score_items">itens!</span>
+                </p>
+                <img id="end-macaw-sprite" src="" alt="Arara" class="w-32 h-32 mx-auto mb-4">
+                <div id="stars-container" class="flex justify-center text-6xl mb-6"></div>
+                <p id="end-message" class="text-xl mb-8"></p>
+                
+                <button id="final-action-button" data-key="btn_jogar_novo" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-xl transition-transform transform hover:scale-110">Jogar de Novo</button>
+            </div>
+        </div>
+
+        <div id="book-modal" class="modal absolute inset-0 flex-col items-center justify-center z-50 hidden">
+            <div class="book-container w-11/12 max-w-5xl max-h-[90vh] flex flex-col relative p-8">
+                <button id="book-modal-close" class="absolute top-4 right-6 text-5xl transition-colors z-10">&times;</button>
+                <div id="book-pages-container" class="w-full h-full flex gap-4">
+                    <div class="page left-page flex-1 flex flex-col p-4 md:p-6"><div class="section"></div><div class="section"></div><div class="section"></div></div>
+                    <div class="page right-page flex-1 flex flex-col p-4 md:p-6"><div class="section"></div><div class="section"></div><div class="section"></div></div>
+                </div>
+                <div id="book-navigation" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-8">
+                    <button id="prev-page-btn" data-key="livro_anterior" class="nav-button">◀ Página Anterior</button>
+                    <span id="page-indicator" class="text-lg font-bold"></span> 
+                    <button id="next-page-btn" data-key="livro_proximo" class="nav-button">Próxima Página ▶</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="item-detail-modal" class="modal absolute inset-0 items-center justify-center z-[60] hidden">
+            <div class="bg-gray-800 p-6 rounded-xl shadow-2xl text-white w-11/12 max-w-2xl max-h-[90vh] flex flex-col border-4 border-amber-400/50">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="item-detail-name" class="text-3xl font-bold text-cyan-400">Nome do Item</h2>
+                    <button id="item-detail-close" class="text-4xl hover:text-red-500 transition-colors">&times;</button>
+                </div>
+                <div class="overflow-y-auto pr-2 flex-1">
+                    <div class="flex flex-col md:flex-row gap-6 items-center mb-4">
+                        <img id="item-detail-img" src="" alt="Imagem do Item" class="w-32 h-32 object-contain bg-gray-700 rounded-lg p-2">
+                        <div>
+                            <h3 data-key="item_desc" class="text-xl font-semibold text-amber-400 mb-1">Descrição</h3>
+                            <p id="item-detail-desc" class="text-gray-300"></p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 data-key="item_funfact" class="text-xl font-semibold text-amber-400 mb-1">💡 Curiosidade Divertida</h3>
+                            <p id="item-detail-funfact" class="text-gray-300 italic bg-gray-900/50 p-3 rounded-lg"></p>
+                        </div>
+                        <div>
+                            <h3 data-key="item_recycling" class="text-xl font-semibold text-amber-400 mb-1">♻️ Por que Reciclar?</h3>
+                            <p id="item-detail-recycling" class="text-gray-300"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <header class="p-4 sm:p-6 bg-gray-900/50 flex justify-between items-center text-white z-20 hidden">
+            
+            <div class="text-xl sm:text-3xl font-bold">
+                <span data-key="lixos_label">Lixos:</span> <span id="stage-score">0</span>
+            </div>
+            
+            <div class="flex flex-col items-center font-bold">
+                <span id="stage-label" class="text-xl sm:text-3xl leading-tight" data-key="etapa_label">Etapa 1/4</span>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="bg-gray-800 px-3 py-1 sm:px-4 sm:py-2 rounded-lg">
+                    <div id="timer" class="text-4xl sm:text-5xl font-bold text-yellow-300">01:30</div>
+                </div>
+            </div>
+        </header>
+        
+        <button id="book-button" title="Guia de Reciclagem" class="transition-transform transform hover:scale-110">
+            <img data-sprite-key="book_closed" src="assets/livro_fechado_fase2_padrao.png" alt="Guia de Reciclagem" class="w-full h-full object-contain">
+        </button>
+
+        <main class="flex-1 relative flex flex-col justify-end hidden">
+            <div id="trash-spawn-area" class="absolute top-[25%] left-[20%] w-[55%] h-[50%]"></div>
+            
+            <div id="bins-container" class="w-full p-4 z-10">
+                <div class="bin-grid-wrapper">
+                    
+                    <div class="bin-item-wrapper flex flex-col items-center">
+                        <div class="bin" data-category="organicos"></div>
+                        <p class="item-label text-sm text-white/90 font-medium">ORGÂNICOS</p>
+                    </div>
+
+                    <div class="bin-item-wrapper flex flex-col items-center">
+                        <div class="bin" data-category="papel"></div>
+                        <p class="item-label text-sm text-white/90 font-medium">PAPEL</p>
+                    </div>
+
+                    <div class="bin-item-wrapper flex flex-col items-center">
+                        <div class="bin" data-category="metais"></div>
+                        <p class="item-label text-sm text-white/90 font-medium">METAIS</p>
+                    </div>
+
+                    <div class="bin-item-wrapper flex flex-col items-center">
+                        <div class="bin" data-category="vidros"></div>
+                        <p class="item-label text-sm text-white/90 font-medium">VIDROS</p>
+                    </div>
+
+                    <div class="bin-item-wrapper flex flex-col items-center">
+                        <div class="bin" data-category="plasticos"></div>
+                        <p class="item-label text-sm text-white/90 font-medium">PLÁSTICOS</p>
+                    </div>
+
+                    <div class="bin-item-wrapper flex flex-col items-center">
+                        <div class="bin" data-category="rejeitos"></div>
+                        <p class="item-label text-sm text-white/90 font-medium">REJEITOS</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </main>
+        
+        <footer id="macaw-message" class="h-24 p-4 flex items-center gap-4 transition-opacity duration-500 opacity-0 z-30">
+            <img id="macaw-sprite" src="" alt="Arara" class="w-24 h-24 object-contain">
+            <div class="bg-white/90 p-3 rounded-lg text-gray-800 shadow-md">
+                <p id="macaw-text" class="font-semibold"></p>
+            </div>
+        </footer>
+    </div>
+    <script src="fase2script.js"></script>
+</body>
+</html>

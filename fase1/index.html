@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="fase1_titulo">SafeQuest - Como Montar Cestas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-800 flex items-center justify-center h-screen">
+
+    <div id="orientation-warning" class="fixed inset-0 bg-gray-900 text-white z-[100] flex-col items-center justify-center text-center p-4 hidden">
+        <svg class="w-24 h-24 mb-6 animate-pulse text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.695v-2.257a2.25 2.25 0 00-2.25-2.25H10.5a2.25 2.25 0 00-2.25 2.25v2.257m1.5-10.125a.375.375 0 01.604.33l-2.7 10.125a.375.375 0 01-.604-.33L9 4.501z" />
+        </svg>
+        <h2 class="text-3xl font-bold mb-2" data-key="orientation_titulo">Vire o seu dispositivo</h2>
+        <p class="text-lg max-w-sm" data-key="orientation_texto">Para uma melhor experiência, este jogo deve ser jogado com a tela na horizontal.</p>
+    </div>
+
+    <div id="game-container" class="game-container w-full max-w-7xl h-full max-h-[900px] rounded-2xl shadow-2xl flex flex-col relative overflow-hidden">
+        
+        <div id="start-screen" class="modal absolute inset-0 flex flex-col items-center justify-center z-50">
+            <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center">
+                <h1 class="text-5xl font-bold mb-4 text-cyan-400" data-key="safequest_titulo">SafeQuest</h1>
+                <h2 class="text-2xl mb-8" data-key="fase1_subtitulo">Fase 1: Como Montar Cestas de Suprimentos</h2>
+                <p class="mb-8 max-w-lg" data-key="fase1_descricao">Monte as cestas de acordo com o pedido da Arara Azul! Arraste os alimentos da esteira para os espaços e verifique se acertou.</p>
+                <button id="start-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-2xl transition-transform transform hover:scale-105" data-key="btn_comecar">Começar!</button>
+            </div>
+        </div>
+        
+        <div id="stage-transition-screen" class="modal absolute inset-0 flex-col items-center justify-center z-40 hidden">
+            <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center max-w-2xl">
+                <h2 id="stage-title" class="text-4xl font-bold mb-4 text-amber-400"></h2>
+                <div class="flex items-center justify-center">
+                    <img id="stage-macaw-sprite" src="assets/arara-falando-padrao.png" alt="Arara" class="w-32 h-32 mr-6">
+                    <p id="stage-explanation" class="text-lg text-left"></p>
+                </div>
+                <button id="next-stage-button" class="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg text-xl transition-transform transform hover:scale-105" data-key="btn_continuar">Continuar</button>
+            </div>
+        </div>
+        
+        <div id="end-screen" class="modal absolute inset-0 flex-col items-center justify-center z-50 hidden">
+            <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center">
+                <h1 id="end-title" class="text-5xl font-bold mb-4" data-key="end_titulo_padrao">Tempo Esgotado!</h1>
+                <p class="text-2xl mb-4">
+                    <span data-key="end_score_texto_1">Você fez</span>
+                    <span id="final-score" class="font-bold text-yellow-400">0</span>
+                    <span data-key="end_score_texto_2">pedidos corretos!</span>
+                </p>
+                <img id="end-macaw-sprite" src="" alt="Arara" class="w-32 h-32 mx-auto mb-4">
+                <div id="stars-container" class="flex justify-center text-6xl mb-6"></div>
+                <p id="end-message" class="text-xl mb-8"></p>
+                <button id="restart-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-xl transition-transform transform hover:scale-105" data-key="btn_jogar_novo">Jogar de Novo</button>
+            </div>
+        </div>
+
+        <div id="book-modal" class="modal absolute inset-0 flex-col items-center justify-center z-50 hidden">
+            <div class="book-container w-11/12 max-w-5xl max-h-[90vh] flex flex-col relative p-8">
+                <button id="book-modal-close" class="absolute top-4 right-6 text-5xl transition-colors z-10">&times;</button>
+                <div id="book-pages-container" class="w-full h-full flex gap-4">
+                    <div class="page left-page flex-1 flex flex-col justify-between p-4 md:p-6">
+                        <div class="section"></div>
+                        <div class="section"></div>
+                        <div class="section"></div>
+                    </div>
+                    <div class="page right-page flex-1 flex flex-col justify-between p-4 md:p-6">
+                        <div class="section"></div>
+                        <div class="section"></div>
+                        <div class="section"></div>
+                    </div>
+                </div>
+                <div id="book-navigation" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-8">
+                    <button id="prev-page-btn" class="nav-button" data-key="livro_pag_ant">◀ Página Anterior</button>
+                    <span id="page-indicator" class="text-lg font-bold"></span>
+                    <button id="next-page-btn" class="nav-button" data-key="livro_pag_prox">Próxima Página ▶</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="food-detail-modal" class="modal absolute inset-0 items-center justify-center z-50 hidden">
+            <div class="bg-gray-800 p-6 rounded-xl shadow-2xl text-white w-11/12 max-w-2xl max-h-[90vh] flex flex-col border-4 border-amber-400/50">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="food-detail-name" class="text-3xl font-bold text-cyan-400">Nome do Alimento</h2>
+                    <button id="food-detail-close" class="text-4xl hover:text-red-500 transition-colors">&times;</button>
+                </div>
+                <div class="overflow-y-auto pr-2 flex-1">
+                    <div class="flex flex-col md:flex-row gap-6 items-center mb-4">
+                        <img id="food-detail-img" src="" alt="Imagem do Alimento" class="w-32 h-32 object-contain bg-gray-700 rounded-lg p-2">
+                        <div>
+                            <h3 class="text-xl font-semibold text-amber-400 mb-1" data-key="detalhe_descricao">Descrição</h3>
+                            <p id="food-detail-desc" class="text-gray-300"></p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-amber-400 mb-1" data-key="detalhe_curiosidade">💡 Curiosidade Divertida</h3>
+                            <p id="food-detail-funfact" class="text-gray-300 italic bg-gray-900/50 p-3 rounded-lg"></p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-amber-400 mb-1" data-key="detalhe_info">📊 Informações Nutricionais</h3>
+                            <p id="food-detail-nutri" class="text-gray-300"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="p-1 bg-gray-900/50 flex justify-between items-center text-white z-20 hidden">
+            <div id="score-text" class="font-bold"><span data-key="header_pedidos">Pedidos:</span> <span id="score">0</span></div>
+            <div id="stage-text" class="font-bold"><span data-key="header_etapa">Etapa</span> <span id="stage-display">1</span>/4</div>
+            
+            <div class="relative grid place-items-center">
+                <div id="timer" class="col-start-1 row-start-1 font-bold text-yellow text-300 translate-y-[10px]">01:30</div>
+            </div>
+            
+        </header>
+        <button id="book-button" data-title-key="livro_titulo_hover" title="Guia de Alimentos" class="transition-transform transform hover:scale-110">
+                <img src="assets/livro-fechado.png" alt="Guia de Alimentos" class="w-60 h-60 object-contain">
+        </button>
+
+        <main class="flex-1 relative hidden">
+            <div id="esteira-container" class="absolute pointer-events-none z-10"></div>
+            
+            <div id="area-de-jogo" class="flex flex-col items-center justify-start gap-4 z-20">
+                
+                <div id="order-ticket" class="bg-slate-100/90 p-3 rounded-lg text-center shadow-lg w-full max-w-md backdrop-blur-sm">
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2 border-b-2 border-gray-300 pb-1" data-key="pedido_atual">Pedido Atual:</h3>
+                    <div id="order-list" class="flex justify-around items-center gap-2">
+                        <div class="ticket-item bg-black-200 text-white-1000 font-semibold px-3 py-2 rounded-md h-12 flex items-center justify-center text-center flex-1"></div>
+                        <div class="ticket-item bg-black-200 text-white-1000 font-semibold px-3 py-2 rounded-md h-12 flex items-center justify-center text-center flex-1"></div>
+                        <div class="ticket-item bg-black-200 text-white-1000 font-semibold px-3 py-2 rounded-md h-12 flex items-center justify-center text-center flex-1"></div>
+                    </div>
+                </div>
+
+                <div id="cestas-container" class="flex gap-4">
+                    <div class="cesta bg-gray-700/80 rounded-lg flex items-center justify-center text-5xl cursor-pointer" data-slot-index="0"></div>
+                    <div class="cesta bg-gray-700/80 rounded-lg flex items-center justify-center text-5xl cursor-pointer" data-slot-index="1"></div>
+                    <div class="cesta bg-gray-700/80 rounded-lg flex items-center justify-center text-5xl cursor-pointer" data-slot-index="2"></div>
+                </div>
+
+                <button id="verify-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-lg text-2xl transition-transform transform hover:scale-105 opacity-50 cursor-not-allowed" disabled data-key="btn_verificar">Verificar</button>
+            </div>
+            </main>
+        
+        <footer id="macaw-message" class="h-24 p-4 flex items-center gap-4 transition-opacity duration-500 opacity-0 z-30">
+            <img id="macaw-sprite" src="assets/arara-falando-padrao.png" alt="Arara" class="w-24 h-24 object-contain">
+            <div class="bg-white/90 p-3 rounded-lg text-gray-800 shadow-md">
+                <p id="macaw-text" class="font-semibold"></p>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="titulo_principal">Safe Quest - Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="background-effects">
+        <div id="stars-small"></div>
+        <div id="stars-medium"></div>
+        <div id="stars-large"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    
+    <div id="main-menu" class="menu-container">
+        <h1 class="game-title" data-key="titulo_principal">Safe Quest</h1>
+        <button id="play-button">
+            <img src="assets/playmenu1.png" alt="Jogar">
+        </button>
+    </div>
+
+    <div id="level-select-container" class="hidden">
+        <h2 class="level-select-title" data-key="selecionar_fase_titulo">Selecionar Fase</h2>
+        <div class="level-grid">
+            <button class="level-button" data-level="1">
+                <span class="level-number" data-key="fase_label">Fase</span> 1
+            </button>
+            <button class="level-button" data-level="2">
+                <span class="level-number" data-key="fase_label">Fase</span> 2
+            </button>
+            <button class="level-button" data-level="3">
+                <span class="level-number" data-key="fase_label">Fase</span> 3
+            </button>
+        </div>
+        <button id="back-to-menu-button" class="settings-btn" data-key="voltar_menu">Voltar</button>
+    </div>
+
+    <button id="settings-button">
+        <img src="assets/configmenu.png" alt="Configurações">
+    </button>
+
+    <div id="settings-overlay" class="hidden"></div>
+    <div id="settings-modal" class="hidden">
+        <h2 class="settings-title" data-key="settings_title">Configurações</h2>
+        
+        <div class="setting-option">
+            <button id="music-toggle-button" class="settings-btn" data-key="music_on">Música: LIGADA</button>
+        </div>
+        <div class="setting-option">
+            <button id="sfx-toggle-button" class="settings-btn" data-key="sfx_on">Efeitos Sonoros: LIGADOS</button>
+        </div>
+        
+        <div class="setting-option">
+            <button id="language-toggle-button" class="settings-btn" data-key="current-language-display">Idioma: Português</button>
+        </div>
+        <div class="setting-option">
+            <p id="color-mode-label" data-key="modo_cor_label">Modo de Cor</p>
+            <div class="color-modes">
+                <button class="color-mode-btn active" data-mode="default" data-key="cor_padrao">Padrão</button>
+                <button class="color-mode-btn" data-mode="high-contrast" data-key="cor_alto_contraste">Alto Contraste</button>
+                <button class="color-mode-btn" data-mode="colorblind-safe" data-key="cor_daltonismo">Daltonismo</button>
+            </div>
+        </div>
+
+        <button id="close-settings-button" data-key="btn_fechar" class="settings-btn close-btn">Fechar</button>
+    </div>
+
+    <script src="menu_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: #2a3a4a;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/cenario-fase1.1-padrao.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #1f2937;
+    aspect-ratio: 16 / 9; /* Mantém a proporção do jogo */
+    max-width: 98vw;      /* Limita a largura máxima */
+    max-height: 98vh;     /* Limita a altura máxima */
+    width: auto;          /* Deixa o navegador calcular a largura baseado na altura e aspect-ratio */
+    height: auto;         /* Deixa o navegador calcular a altura baseado na largura e aspect-ratio */
+    position: relative;   /* Contexto para elementos posicionados absolutamente dentro */
+    display: flex;        /* Usa flexbox para organizar header, main, footer */
+    flex-direction: column;
+    border-radius: 1rem; /* rounded-2xl */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    overflow: hidden; /* Garante que nada saia dos cantos arredondados */
+}
+
+/* --- Layout Principal com Flexbox --- */
+main {
+    flex-grow: 1; /* Faz o main ocupar o espaço restante entre header e footer */
+    position: relative; /* Contexto para posicionamento absoluto interno, se necessário */
+    width: 100%;
+    overflow: hidden; /* Evita que a esteira ou outros itens vazem */
+}
+
+#esteira-container {
+    left: 10%; /* Ajuste a posição horizontal da imagem da esteira */
+    top: 15%;  /* Ajuste a posição vertical da imagem da esteira */
+    width: 60%; /* Esteira ocupa 60% da largura do main */
+    height: 100%; /* Esteira ocupa 100% da altura do main */
+    background-image: url('assets/esteira1.png');
+    background-size: contain; /* Mostra a imagem inteira, pode criar espaços vazios */
+    background-position: center left; /* Alinha à esquerda dentro do seu espaço */
+    background-repeat: no-repeat;
+    position: absolute; /* Necessário para que os .food-item usem-na como referência */
+    z-index: 10;
+    pointer-events: none; /* Já definido no HTML, mas reforça aqui */
+}
+
+#area-de-jogo {
+    width: 40%; /* Área de jogo ocupa os 40% restantes */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Centraliza verticalmente o conteúdo */
+    gap: 1rem; /* Espaçamento entre ticket, cestas e botão */
+    z-index: 20; /* Fica acima da esteira */
+    padding: 1rem 2rem; /* Espaçamento interno */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho */
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+/* --- Fim Layout Principal --- */
+
+/* --- Estilos dos Elementos do Jogo (Ajustados) --- */
+.food-item {
+    position: absolute; /* Posicionado dentro do #esteira-container */
+    width: clamp(35px, 3.5vw, 60px); /* Tamanho ajustado */
+    height: clamp(35px, 3.5vw, 60px);
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.2s ease;
+    z-index: 15; /* Acima da esteira, abaixo da area-de-jogo */
+    pointer-events: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#order-ticket {
+    background-color: #374151be; /* bg-gray-700/75 approx */
+    padding: 0.75rem; /* p-3 */
+    border-radius: 0.5rem; /* rounded-lg */
+    text-align: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    width: 90%; /* Ocupa a maior parte da area-de-jogo */
+    max-width: 450px; /* Limite máximo */
+    backdrop-filter: blur(2px);
+}
+
+#order-ticket h3 {
+    font-size: clamp(1rem, 2vw, 1.25rem); /* text-xl */
+    font-weight: 700; /* font-bold */
+    color: #ffffff; /* text-white */
+    margin-bottom: 0.5rem; /* mb-2 */
+    border-bottom: 2px solid #ffffff; /* border-b-2 border-white */
+    padding-bottom: 0.25rem; /* pb-1 */
+}
+
+#order-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5rem; /* gap-2 */
+}
+
+.ticket-item {
+    background-color: #374151be; /* bg-gray-700/75 approx */
+    color: #ffffff; /* text-white */
+    font-weight: 600; /* font-semibold */
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    height: clamp(30px, 4vh, 45px); /* Altura ajustada */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1; /* flex-1 */
+    transition: background-color 0.3s ease;
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem); /* Tamanho de fonte ajustado */
+}
+
+#cestas-container {
+    display: flex;
+    gap: clamp(0.5rem, 1.5vw, 1rem); /* Espaçamento dinâmico */
+}
+
+.cesta {
+    width: clamp(60px, 7vw, 110px); /* Tamanho ajustado */
+    height: clamp(60px, 7vw, 110px);
+    transition: all 0.3s ease;
+    border: 3px dashed transparent; /* Borda um pouco mais fina */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(55, 65, 81, 0.8); /* bg-gray-700/80 */
+    border-radius: 0.5rem; /* rounded-lg */
+    cursor: pointer;
+}
+
+.cesta img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+#verify-button {
+    background-color: #3B82F6; /* bg-blue-500 */
+    color: white;
+    font-weight: 700; /* font-bold */
+    padding: clamp(0.4rem, 1vh, 0.75rem) clamp(1rem, 3vw, 2rem); /* Padding ajustado */
+    border-radius: 0.5rem; /* rounded-lg */
+    font-size: clamp(1rem, 2vw, 1.5rem); /* Tamanho de fonte ajustado */
+    transition: transform 0.2s, background-color 0.2s;
+    transform-origin: center;
+}
+#verify-button:hover:not(:disabled) {
+    background-color: #2563EB; /* hover:bg-blue-600 */
+    transform: scale(1.05);
+}
+#verify-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Header e Footer (Ajustados) --- */
+header {
+    background-color: rgba(17, 24, 39, 0.5); /* bg-gray-900/50 */
+    padding: clamp(0.3rem, 1vh, 0.75rem) clamp(1rem, 2vw, 1.5rem);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 20;
+}
+
+#score-text, #stage-text {
+    font-size: clamp(0.9rem, 1.8vw, 1.5rem);
+    font-weight: 700;
+}
+#score-text span, #stage-text span {
+    font-weight: 700;
+}
+
+header > .relative {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+#timer {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: #FACC15;
+    transform: translateY(10%);
+}
+
+
+footer#macaw-message {
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+    width: auto;
+    max-width: 40%;
+    height: auto;
+    padding: clamp(0.3rem, 1vh, 0.5rem);
+    z-index: 30;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 1vw, 1rem);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#macaw-sprite {
+    width: clamp(50px, 6vw, 80px);
+    height: clamp(50px, 6vw, 80px);
+    object-fit: contain;
+}
+
+#macaw-message div {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: clamp(0.3rem, 1vh, 0.6rem);
+    border-radius: 0.5rem;
+    color: #374151;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#macaw-text {
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+    font-weight: 600;
+}
+
+/* --- Botão do Livro (REPOSICIONADO E CENTRALIZADO) --- */
+#book-button {
+    position: absolute;
+    top: 40%; /* Distância do topo - AJUSTE ESTE VALOR (ex: 5%, 15%) */
+    left: 50%; /* Centraliza horizontalmente no game-container */
+    transform: translateX(-50%); /* Compensa a largura do botão para centralizar de fato */
+    z-index: 30;
+    width: clamp(80px, 8vw, 120px); /* Tamanho base */
+    height: auto;
+    transition: transform 0.2s ease; /* Transição suave */
+    transform-origin: center;
+}
+#book-button:hover {
+    /* Combina a escala com a translação para manter centralizado no hover */
+    transform: scale(1.1) translateX(-50%);
+}
+#book-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* --- Estilos Visuais e Animações --- */
+.food-item:active { cursor: grabbing; transform: scale(1.1); }
+.cesta.drag-over { transform: scale(1.05); border-color: #F59E0B; }
+.cesta.correct-plate { animation: correct-plate-animation 0.7s ease-out; }
+@keyframes correct-plate-animation {
+    0% { box-shadow: 0 0 0px #22C55E; }
+    50% { box-shadow: 0 0 40px 15px #22C55E; }
+    100% { box-shadow: 0 0 0px #22C55E; }
+}
+.cesta.wrong-plate { animation: wrong-plate-animation 0.5s ease; }
+@keyframes wrong-plate-animation {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+}
+.timer-warning { animation: timer-pulse 1s infinite; }
+@keyframes timer-pulse {
+    0%, 100% { transform: scale(1) translateY(10%); color: #EF4444; }
+    50% { transform: scale(1.05) translateY(10%); color: #F87171; }
+}
+.food-spawn { animation: spawn-animation 0.3s ease-out; }
+@keyframes spawn-animation {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.food-exit { animation: exit-animation 0.4s ease-in forwards; }
+@keyframes exit-animation {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(0.5); opacity: 0; }
+}
+
+/* --- Modais --- */
+.modal {
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal > div {
+     padding: 2rem;
+     border-radius: 0.75rem;
+     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+     color: white;
+     text-align: center;
+     max-width: 90%;
+}
+#book-modal .book-container, #food-detail-modal > div {
+     max-width: 90vw;
+     max-height: 90vh;
+}
+
+/* --- Estilos do Livro (ATUALIZADOS) --- */
+.book-container {
+    background-image: url('assets/livro-aberto.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 1.8 / 1;
+    padding: 2.5% 4%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Ajustes para área de páginas: deixa espaço interno e suaviza a transição */
+#book-pages-container {
+     width: 100%;
+     height: calc(100% - 70px);
+     display: flex;
+     gap: 2%;
+     padding: 4% 6%;
+     box-sizing: border-box;
+     transition: opacity 0.3s ease-in-out;
+}
+
+/* Cada página fica com colunas verticais (3 seções por página) */
+.page {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     gap: 8px;
+     overflow-y: auto;
+     padding: 6px;
+     box-sizing: border-box;
+     min-width: 0;
+     position: relative;
+}
+
+/* Seção do livro: agora transparente para "encaixar" no sprite do livro.
+   O conteúdo fica dentro de .section-inner que tem leve fundo para legibilidade */
+.page .section {
+     background: transparent;
+     color: #3d3021;
+     padding: 0; /* padding é aplicado no inner */
+     border-radius: 8px;
+     border: none;
+     box-shadow: none;
+     display: flex;
+     flex-direction: column;
+     gap: 0;
+     min-height: 78px; /* ajuste base para "encaixar" nos quadradinhos do sprite */
+     align-items: stretch;
+     justify-content: center;
+     position: relative;
+}
+
+/* Wrapper interno que cria a área legível dentro do quadradinho do sprite */
+.page .section .section-inner {
+     width: 100%;
+     height: 100%;
+     background: rgba(255,255,255,0.92); /* leve fundo para legibilidade */
+     border-radius: 6px;
+     padding: 10px 12px;
+     box-sizing: border-box;
+     border: 3px solid rgba(216,197,154,0.95); /* borda combinando com o livro */
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     justify-content: center;
+     align-items: stretch;
+     box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+/* mantém o título e grid dos itens, mas com espaço interno menor */
+.section .category-title {
+     font-size: clamp(0.78rem, 1.6vw, 0.98rem);
+     font-weight: 700;
+     color: #6b4c2d;
+     padding-bottom: 4px;
+     margin-bottom: 4px;
+     border-bottom: 1px solid #c89c6d;
+}
+
+/* Container dos itens: grid responsivo dentro do inner */
+.section .food-items-container {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+     gap: 6px;
+     align-items: center;
+     justify-items: center;
+}
+
+/* Pequenos ajustes visuais para encaixar melhor no quadradinho */
+.book-food-item {
+     padding: 4px;
+     border-radius: 6px;
+     max-width: 92px;
+}
+.book-food-item img { width: clamp(32px, 5vw, 48px); height: clamp(32px, 5vw, 48px); }
+/* ...existing code... */
+
+/* Navegação do livro: maior contraste e botões mais acessíveis */
+#book-navigation { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 1rem; }
+#book-navigation .nav-button {
+    background-color: #b8793f;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background-color 0.15s, transform 0.15s;
+    font-size: clamp(0.75rem, 1vw, 0.95rem);
+    border: none;
+    cursor: pointer;
+}
+#book-navigation .nav-button:hover:not(:disabled) { background-color: #7a4b2a; transform: translateY(-2px); }
+#book-navigation .nav-button:disabled { background-color: #e0d6c8; cursor: not-allowed; opacity: 0.6; }
+
+/* Fecha do modal (x) com destaque e clique maior em telas pequenas */
+.book-container #book-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    color: #a06b3e;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    background: rgba(255,255,255,0.02);
+    border: none;
+}
+
+/* Suaviza fade ao trocar de página */
+#book-pages-container.fade-out { opacity: 0; transition: opacity 0.28s ease; }
+
+/* --- Ajustes responsivos específicos para o livro --- */
+@media (max-width: 1024px) {
+    .section .food-items-container { gap: 6px; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
+    .book-food-item img { width: clamp(36px, 5vw, 48px); height: clamp(36px, 5vw, 48px); }
+}
+@media (max-width: 768px) {
+    #book-pages-container { padding: 3% 4%; height: calc(100% - 55px); gap: 3%; }
+    .page { padding: 4px; gap: 6px; }
+    .page .section { padding: 8px; border-radius: 6px; }
+    .book-food-item img { width: 34px; height: 34px; }
+    #book-navigation { gap: 0.5rem; bottom: 6px; }
+    .book-container { padding: 2% 3%; }
+}
+
+/* --- Scrollbars --- */
+.page::-webkit-scrollbar,
+#food-detail-modal .overflow-y-auto::-webkit-scrollbar { width: 6px; }
+.page::-webkit-scrollbar-track,
+#food-detail-modal .overflow-y-auto::-webkit-scrollbar-track { background: rgba(45, 55, 72, 0.5); border-radius: 10px; }
+.page::-webkit-scrollbar-thumb,
+#food-detail-modal .overflow-y-auto::-webkit-scrollbar-thumb { background: #c89c6d; border-radius: 10px; }
+.page::-webkit-scrollbar-thumb:hover,
+#food-detail-modal .overflow-y-auto::-webkit-scrollbar-thumb:hover { background: #a06b3e; }
+
+/* --- Alerta de Orientação --- */
+#orientation-warning {
+    display: none; position: fixed; inset: 0; background-color: #111827; color: white; z-index: 100;
+    flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1rem;
+}
+#orientation-warning h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 0.5rem; }
+#orientation-warning p { font-size: 1.125rem; max-width: 28rem; }
+#orientation-warning svg { width: 6rem; height: 6rem; margin-bottom: 1.5rem; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; color: #22D3EE; }
+
+@media (orientation: portrait) {
+    #game-container { display: none; }
+    #orientation-warning { display: flex; }
+}
+
+/* =====================================================================
+   MEDIA QUERIES PARA RESPONSIVIDADE
+   ===================================================================== */
+
+/* --- Telas Grandes (Notebooks/Computadores > 1024px) --- */
+/* (Os estilos base já se aplicam aqui) */
+
+/* --- Telas Médias (Tablets ~1024px Largura) --- */
+@media (max-width: 1024px) and (orientation: landscape) {
+    #esteira-container { width: 55%; }
+    #area-de-jogo { width: 45%; padding: 0.8rem 1.5rem; gap: 0.8rem; }
+    .cesta { width: clamp(55px, 6.5vw, 90px); height: clamp(55px, 6.5vw, 90px); }
+    #order-ticket h3 { font-size: clamp(0.9rem, 1.8vw, 1.1rem); }
+    .ticket-item { font-size: clamp(0.65rem, 1.1vw, 0.8rem); height: clamp(28px, 3.5vh, 40px); }
+    #verify-button { font-size: clamp(0.9rem, 1.8vw, 1.3rem); padding: clamp(0.3rem, 0.8vh, 0.6rem) clamp(0.8rem, 2.5vw, 1.5rem); }
+    #book-button {
+        width: clamp(105px, 7.5vw, 110px); /* Ajustado para tablet */
+        top: 40%; /* Ajustado para tablet */
+        /* left: 50% e transform são herdados */
+    }
+    #book-button:hover { transform: scale(1.1) translateX(-50%); }
+    #macaw-sprite { width: clamp(45px, 5.5vw, 70px); height: clamp(45px, 5.5vw, 70px); }
+    #macaw-text { font-size: clamp(0.65rem, 1.1vw, 0.8rem); }
+    .book-food-item { width: clamp(50px, 5.5vw, 65px); }
+    .book-food-item img { width: clamp(30px, 3.5vw, 45px); height: clamp(30px, 3.5vw, 45px); }
+    .book-food-item p { font-size: clamp(0.55rem, 0.7vw, 0.65rem); }
+    #book-navigation { gap: 0.8rem; }
+    #book-navigation .nav-button { padding: 4px 8px; font-size: clamp(0.6rem, 0.9vw, 0.8rem); }
+    #book-navigation #page-indicator { font-size: clamp(0.7rem, 1.1vw, 0.9rem); }
+}
+
+/* --- Telas de Celulares Médios (Ex: ~844px Largura) --- */
+@media (max-width: 850px) and (orientation: landscape) {
+     header { padding: 0.1rem 0.6rem; }
+     #score-text, #stage-text { font-size: 0.75rem; }
+     #timer { font-size: 1.05rem; transform: translateY(0); }
+     #esteira-container { width: 50%; } /* Divide 50/50 */
+     #area-de-jogo { width: 50%; padding: 0.6rem; gap: 0.4rem; justify-content: flex-start; padding-top: 0.6rem; }
+     #order-ticket { width: 95%; max-width: 95%; padding: 0.25rem 0.5rem; }
+     #order-ticket h3 { font-size: 0.75rem; margin-bottom: 0.15rem; border: none; padding-bottom: 0; }
+     #order-list { gap: 0.25rem; }
+     .ticket-item { font-size: 0.65rem; height: 28px; min-width: 60px; padding: 1px 4px; }
+     #cestas-container { gap: 0.3rem; }
+     .cesta { width: clamp(45px, 11vw, 65px); height: clamp(45px, 11vw, 65px); border-width: 2px; }
+     .cesta img { width: 75%; height: 75%; }
+     #verify-button { font-size: 0.95rem; padding: 0.25rem 0.9rem; margin-top: 0.4rem; }
+     #book-button {
+         width: clamp(60px, 8.5vw, 80px); /* Ajustado */
+         top: 6%; /* Ajustado */
+         /* left: 50% e transform são herdados */
+         right: auto;
+     }
+     #book-button:hover { transform: scale(1.1) translateX(-50%); }
+    .food-item { width: clamp(30px, 3.4vw, 50px); height: clamp(30px, 3.4vw, 50px); }
+     footer#macaw-message { padding: 0.25rem; gap: 0.4rem; bottom: 0.8%; left: 0.8%; max-width: 48%; }
+     #macaw-sprite { width: clamp(40px, 5.5vw, 55px); height: clamp(40px, 5.5vw, 55px); }
+     #macaw-message div { padding: 0.25rem 0.5rem; }
+     #macaw-text { font-size: 0.65rem; }
+     .modal > div { padding: 0.9rem; }
+     #start-screen h1, #end-screen h1 { font-size: 1.6rem; margin-bottom: 0.6rem; }
+     #start-screen h2, #end-screen p.text-2xl { font-size: 1.05rem; margin-bottom: 0.9rem; }
+     #start-screen p, #stage-transition-screen p, #end-screen #end-message { font-size: 0.8rem; margin-bottom: 0.9rem; }
+     #start-screen #start-button, #end-screen #restart-button { font-size: 1.05rem; padding: 0.45rem 1.3rem; }
+     /* (Copie outros ajustes de modais da query 768px se necessário) */
+}
+
+/* --- Telas Pequenas (Celulares < 768px Largura) --- */
+@media (max-width: 768px) and (orientation: landscape) {
+    header { padding: 0.1rem 0.5rem; }
+    #score-text, #stage-text { font-size: 0.7rem; }
+    #timer { font-size: 1rem; transform: translateY(0); }
+    #esteira-container { width: 50%; }
+    #area-de-jogo { width: 50%; padding: 0.5rem; gap: 0.3rem; justify-content: flex-start; padding-top: 0.5rem; }
+    #order-ticket { width: 95%; max-width: 95%; padding: 0.2rem 0.4rem; }
+    #order-ticket h3 { font-size: 0.7rem; margin-bottom: 0.1rem; border: none; padding-bottom: 0; }
+    #order-list { gap: 0.2rem; }
+    .ticket-item { font-size: 0.6rem; height: 25px; min-width: 55px; padding: 1px 3px; }
+    #cestas-container { gap: 0.25rem; }
+    .cesta { width: clamp(40px, 10vw, 60px); height: clamp(40px, 10vw, 60px); border-width: 2px; }
+    .cesta img { width: 70%; height: 70%; }
+    #verify-button { font-size: 0.9rem; padding: 0.2rem 0.8rem; margin-top: 0.3rem; }
+    #book-button {
+        width: clamp(50px, 9vw, 70px);
+        top: 5%;
+        /* left: 50% e transform herdados */
+        right: auto;
+    }
+    #book-button:hover { transform: scale(1.1) translateX(-50%); }
+    .food-item { width: clamp(28px, 3.2vw, 45px); height: clamp(28px, 3.2vw, 45px); }
+    footer#macaw-message { height: auto; padding: 0.2rem; gap: 0.3rem; bottom: 0.5%; left: 0.5%; max-width: 45%; }
+    #macaw-sprite { width: clamp(35px, 5vw, 50px); height: clamp(35px, 5vw, 50px); }
+    #macaw-message div { padding: 0.2rem 0.4rem; }
+    #macaw-text { font-size: 0.6rem; }
+    .modal > div { padding: 0.8rem; }
+    #start-screen h1, #end-screen h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    #start-screen h2, #end-screen p.text-2xl { font-size: 1rem; margin-bottom: 0.8rem; }
+    #start-screen p, #stage-transition-screen p, #end-screen #end-message { font-size: 0.75rem; margin-bottom: 0.8rem; }
+    #start-screen #start-button, #end-screen #restart-button { font-size: 1rem; padding: 0.4rem 1.2rem; }
+    #stage-transition-screen h2, #food-detail-modal h2 { font-size: 1.3rem; margin-bottom: 0.5rem;}
+    #stage-transition-screen .flex.items-center.justify-center { flex-direction: column; gap: 0.5rem; }
+    #stage-transition-screen #stage-macaw-sprite, #end-screen #end-macaw-sprite { width: 50px; height: 50px; margin-right: 0; margin-bottom: 0.5rem; }
+    #stage-transition-screen #stage-explanation { text-align: center; }
+    #stage-transition-screen #next-stage-button { margin-top: 0.8rem; font-size: 0.9rem; padding: 0.3rem 1rem; }
+    #end-screen #stars-container { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    #end-screen #end-macaw-sprite { margin-bottom: 0.5rem; }
+    .book-container { aspect-ratio: 1.7 / 1; }
+    #book-pages-container { padding: 4% 6%; height: calc(100% - 45px); }
+    .page { padding: 0.5rem; }
+    .section .category-title { font-size: 0.7rem; }
+    .book-food-item { width: 45px; }
+    .book-food-item img { width: 30px; height: 30px; }
+    .book-food-item p { font-size: 0.5rem; }
+    #book-navigation { gap: 0.5rem; bottom: 5px; }
+    #book-navigation .nav-button { padding: 3px 6px; font-size: 0.6rem; }
+    #book-navigation #page-indicator { font-size: 0.7rem; }
+    .book-container #book-modal-close { top: 1%; right: 2%; font-size: 1.8rem; }
+    #food-detail-modal > div { max-height: 95vh; padding: 0.8rem;}
+    #food-detail-modal h2 { font-size: 1.1rem; }
+    #food-detail-modal #food-detail-close { font-size: 2rem; }
+    #food-detail-modal .flex.flex-col.md\:flex-row { flex-direction: column; gap: 0.5rem; margin-bottom: 0.5rem;}
+    #food-detail-modal #food-detail-img { width: 60px; height: 60px; }
+    #food-detail-modal h3 { font-size: 0.9rem; margin-bottom: 0.1rem;}
+    #food-detail-modal p { font-size: 0.7rem; }
+    #food-detail-modal .space-y-4 { gap: 0.5rem; }
+}
+
+/* (A media query @media (max-width: 769px) foi removida por ser redundante) */
