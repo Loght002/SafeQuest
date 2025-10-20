@@ -83,13 +83,13 @@ const languageToggleButton = document.getElementById('language-toggle-button');
 const settingsTitle = document.querySelector('.settings-title');
 const colorModeLabel = document.getElementById('color-mode-label');
 
-// --- ÁUDIO (NOVO) ---
+// --- ÁUDIO ---
 const menuMusic = new Audio('assets/musica-menu.mp3');
-menuMusic.loop = true; // Faz a música tocar em loop
-menuMusic.volume = 0.5; // Ajuste o volume se precisar
+menuMusic.loop = true;
+menuMusic.volume = 0.5;
 
 const clickSound = new Audio('assets/clique-ui.mp3');
-clickSound.volume = 0.7; // Ajuste o volume se precisar
+clickSound.volume = 0.7;
 
 // --- ESTADO GLOBAL COM CONFIGURAÇÕES ---
 let settings = {
@@ -98,12 +98,12 @@ let settings = {
     language: 'pt',
     colorMode: 'default'
 };
-let hasUserInteracted = false; // Flag para o primeiro clique (para música)
+let hasUserInteracted = false;
 
-// --- FUNÇÕES DE ÁUDIO (NOVAS) ---
+// --- FUNÇÕES DE ÁUDIO ---
 function playClickSound() {
     if (settings.sfx) {
-        clickSound.currentTime = 0; // Reinicia o som se for clicado rápido
+        clickSound.currentTime = 0;
         clickSound.play();
     }
 }
@@ -119,7 +119,6 @@ function loadSettings() {
         settings = { ...settings, ...savedSettings }; 
     }
     
-    // Garante que a música não toque se estiver salva como 'off'
     if (!settings.music) {
         menuMusic.pause();
     }
@@ -182,10 +181,6 @@ backToMenuButton.addEventListener('click', () => {
     mainMenu.classList.remove('hidden');
 });
 
-
-// ========================================================================
-// =================== A PARTE MAIS IMPORTANTE ESTÁ AQUI ==================
-// ========================================================================
 levelButtons.forEach(button => {
     button.addEventListener('click', () => {
         if (button.classList.contains('locked')) {
@@ -198,9 +193,6 @@ levelButtons.forEach(button => {
         window.location.href = `../fase${level}/index.html`; 
     });
 });
-// ========================================================================
-// ========================================================================
-
 
 // --- FUNÇÕES DO MODAL DE CONFIGURAÇÕES ---
 function openSettings() {
@@ -218,12 +210,10 @@ settingsButton.addEventListener('click', openSettings);
 closeSettingsButton.addEventListener('click', closeSettings);
 settingsOverlay.addEventListener('click', closeSettings);
 
-// Listener de música ATUALIZADO
 musicToggleButton.addEventListener('click', () => {
     settings.music = !settings.music;
     
     if (settings.music) {
-        // Só toca se o usuário já tiver interagido com a página
         if(hasUserInteracted) {
              menuMusic.play();
         }
@@ -231,7 +221,7 @@ musicToggleButton.addEventListener('click', () => {
         menuMusic.pause();
     }
     
-    updateConfigUI(); // Atualiza o texto do botão
+    updateConfigUI();
 });
 
 sfxToggleButton.addEventListener('click', () => {
@@ -255,21 +245,16 @@ colorModeButtons.forEach(button => {
 
 // --- INICIALIZAÇÃO ---
 
-// LISTENER GLOBAL DE CLIQUE (NOVO)
-// Isso resolve o autoplay da música e os cliques dos botões
 document.body.addEventListener('click', (e) => {
     
-    // 1. Toca o som de clique se o alvo for um botão
     if (e.target.closest('button')) {
         playClickSound();
     }
 
-    // 2. Inicia a música no primeiro clique (se estiver ligada)
     if (!hasUserInteracted) {
-        hasUserInteracted = true; // Marca que o usuário interagiu
+        hasUserInteracted = true;
         if (settings.music) {
             menuMusic.play().catch(error => {
-                // O catch é importante caso o navegador bloqueie mesmo assim
                 console.warn("Autoplay da música bloqueado pelo navegador.", error);
             });
         }

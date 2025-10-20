@@ -34,7 +34,7 @@ body {
     background-image: var(--bg-image);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; /* Ajustado para 'cover' para preencher melhor em todas as telas */
+    background-size: cover;
     display: flex; justify-content: center; align-items: center; text-align: center;
     animation: background-pan-zoom 40s linear infinite;
     transition: filter 0.5s ease;
@@ -97,10 +97,10 @@ body {
 }
 #settings-overlay.hidden, #settings-modal.hidden { opacity: 0; pointer-events: none; }
 #settings-modal.hidden { transform: translate(-50%, -50%) scale(0.9); }
-.settings-title { font-size: 2em; text-shadow: 2px 2px 2px #000; }
-.setting-option p { margin-bottom: 10px; font-size: 1.2em; }
+.settings-title { font-size: clamp(1.8em, 5vw, 2.2em); text-shadow: 2px 2px 2px #000; }
+.setting-option p { margin-bottom: 10px; font-size: clamp(1em, 4vw, 1.2em); }
 .settings-btn {
-    font-family: 'Luckiest Guy', cursive; font-size: 1.2em;
+    font-family: 'Luckiest Guy', cursive; font-size: clamp(1em, 4vw, 1.2em);
     width: 100%; padding: 10px;
     background-color: #3498db; color: white;
     border: 2px solid #2980b9; border-radius: 10px;
@@ -110,16 +110,28 @@ body {
 .close-btn { background-color: #e74c3c; border-color: #c0392b; margin-top: 10px; }
 .close-btn:hover { background-color: #c0392b; }
 .color-modes { display: flex; gap: 10px; }
-.color-mode-btn { flex: 1; padding: 8px; font-size: 0.9em; }
+.color-mode-btn { flex: 1; padding: 8px; font-size: clamp(0.8em, 3vw, 0.9em); }
 .color-mode-btn.active { background-color: #f1c40f; color: #000; border-color: #f39c12; }
 
 /* ======================================================= */
 /* --- AJUSTES DE RESPONSIVIDADE PARA TELAS DIFERENTES --- */
 /* ======================================================= */
-@media (max-width: 370px) {
-    .color-modes { flex-direction: column; }
-    .settings-title { font-size: 1.8em; }
+@media (max-width: 768px) {
+    .game-title { font-size: 20vw; }
+    #play-button { width: 60vw; }
+    #settings-button { width: 18vw; }
+    #settings-modal { gap: 12px; }
 }
+
+@media (max-width: 480px) {
+    .game-title { font-size: 22vw; margin-bottom: 20px; }
+    #play-button { width: 70vw; }
+    #settings-button { width: 20vw; bottom: 15px; right: 15px; }
+    .color-modes { flex-direction: column; }
+    .level-grid { gap: 15px; }
+    .level-button { width: 100px; height: 100px; font-size: 1.8em; }
+}
+
 @media (min-width: 600px) {
     .game-title { font-size: 15vw; max-width: 800px; }
     #settings-modal { max-width: 500px; }
@@ -164,18 +176,17 @@ body {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Esconde o container usando uma classe */
 #level-select-container.hidden,
 #main-menu.hidden {
     opacity: 0;
     transform: scale(0.9);
     pointer-events: none;
-    position: absolute; /* Evita que o elemento oculto ocupe espaço */
+    position: absolute;
 }
 
 .level-select-title {
     color: var(--title-color);
-    font-size: 12vw; /* Um pouco menor que o título principal */
+    font-size: 12vw;
     line-height: 1;
     margin-bottom: 40px;
     text-shadow: var(--title-shadow);
@@ -234,7 +245,7 @@ body {
 }
 
 .level-button.locked:hover {
-    transform: scale(1); /* Desativa o efeito de zoom */
+    transform: scale(1);
     background-color: #7f8c8d;
 }
 
@@ -246,9 +257,46 @@ body {
 
 #back-to-menu-button {
     max-width: 300px;
-    background-color: #f39c12; /* Cor diferente para destaque */
+    background-color: #f39c12;
     border-color: #e67e22;
 }
 #back-to-menu-button:hover {
     background-color: #d35400;
+}
+
+/* --- AVISO DE ORIENTAÇÃO PARA TELAS VERTICAIS --- */
+#orientation-warning {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    inset: 0; /* Ocupa a tela inteira */
+    background-color: #0b0b19;
+    z-index: 200; /* Fica acima de todo o resto */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Luckiest Guy', cursive;
+    color: white;
+}
+
+#orientation-warning h2 {
+    font-size: clamp(1.8em, 5vw, 2.2em);
+    margin-bottom: 1rem;
+}
+
+#orientation-warning p {
+    font-size: clamp(1em, 4vw, 1.2em);
+}
+
+/* Media Query que ativa o aviso */
+@media (orientation: portrait) {
+    /* Esconde os menus quando a tela está em pé */
+    #main-menu, #level-select-container, #settings-button {
+        display: none !important;
+    }
+    /* Mostra o aviso */
+    #orientation-warning {
+        display: flex;
+    }
 }
