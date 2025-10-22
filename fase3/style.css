@@ -1,15 +1,27 @@
 /* === VARIÁVEIS DE SPRITES (CONTROLADAS VIA JS) === */
 :root {
+<<<<<<< HEAD
  /* Imagens padrão (default) como fallback */
  --sprite-panel: url('assets/Painel elétrico interno - cor padrão.png');
  --sprite-tape: url("assets/Fita isolante - cor padrão.png");
  --sprite-fio-normal: url('assets/fio consertado - padrão.png');
  --sprite-fio-fixed: url('assets/fio_concertado_padrao.png');
  --sprite-fio-broken: url('assets/fio faiscado - cor padrão.png');
+=======
+/* Imagens padrão (default) como fallback */
+--sprite-panel: url('Assets/Painel elétrico interno - cor padrão.png');
+/* --- CORREÇÃO AQUI (espaço adicionado) --- */
+--sprite-tape: url("Assets/Fita isolante - cor padrão .png");
+/* --- CORREÇÃO AQUI (nome do arquivo) --- */
+--sprite-fio-fixed: url('Assets/fio concertado - padrão.png');
+/* --- FIM DA CORREÇÃO --- */
+--sprite-fio-broken: url('Assets/fio faiscado - cor padrão.png');
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 /* === CONFIGURAÇÕES GERAIS === */
 html, body {
+<<<<<<< HEAD
  height: 100vh;
  margin: 0;
  background: radial-gradient(circle at center, #1a1635 0%, #0b0b19 100%);
@@ -25,10 +37,28 @@ html, body {
  height: 100%;
  padding: 1rem;
  box-sizing: border-box;
+=======
+height: 100%;
+margin: 0;
+background: radial-gradient(circle at center, #1a1635 0%, #0b0b19 100%);
+font-family: 'Roboto', sans-serif;
+color: #fff;
+overflow: hidden;
+}
+
+#game-wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100%;
+padding: 1rem;
+box-sizing: border-box;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 /* === RESPONSIVIDADE DO CONTÊINER PRINCIPAL === */
 #game-container {
+<<<<<<< HEAD
  aspect-ratio: 9 / 8;
  border: 4px solid #3e1bdb;
  background: linear-gradient(180deg, #20264a 0%, #14182b 100%);
@@ -39,10 +69,22 @@ html, body {
  max-width: min(900px, 95vw);
  max-height: calc(100vh - 2rem);
  width: 100%;
+=======
+width: 95vw;
+max-width: 900px;
+aspect-ratio: 9 / 8;
+border: 4px solid #2a3a4a;
+background: linear-gradient(180deg, #20264a 0%, #14182b 100%);
+border-radius: 12px;
+box-shadow: 0 0 50px rgba(18, 25, 129, 0.3);
+overflow: hidden;
+position: relative;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 /* === UI SUPERIOR === */
 #ui-top {
+<<<<<<< HEAD
  position: absolute;
  top: 15px;
  left: 25px;
@@ -67,10 +109,37 @@ html, body {
 @keyframes pulse {
  0%,100% { transform: scale(1); text-shadow: 0 0 5px red; }
  50% { transform: scale(1.1); text-shadow: 0 0 20px red; }
+=======
+position: absolute;
+top: 15px;
+left: 25px;
+right: 25px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 10;
+pointer-events: none;
+font-family: 'Orbitron', sans-serif;
+}
+
+#score-container, #timer-container {
+font-size: clamp(1rem, 3vw, 1.8rem);
+text-shadow: 0 0 8px #000, 0 0 10px #6a3cff;
+}
+
+#timer.low-time {
+color: #ff4040;
+animation: pulse 1s infinite;
+}
+@keyframes pulse {
+0%,100% { transform: scale(1); text-shadow: 0 0 5px red; }
+50% { transform: scale(1.1); text-shadow: 0 0 20px red; }
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 /* === PAINEL ELÉTRICO E FIOS === */
 #electrical-panel {
+<<<<<<< HEAD
  position: absolute;
  top: 0;
  left: 0;
@@ -114,10 +183,60 @@ html, body {
 @keyframes spark {
  0%,100% { filter: brightness(1); }
  50% { filter: brightness(2) drop-shadow(0 0 5px #ffcc00); }
+=======
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: var(--sprite-panel); /* <-- USA VARIÁVEL */
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+}
+
+.wire {
+width: 10%;
+height: 30%;
+position: absolute;
+background-size: contain;
+background-repeat: no-repeat;
+/* Corrigindo a propriedade inválida 'position: center' */
+background-position: center; 
+transition: filter 0.2s ease, transform 0.2s;
+}
+
+.wire.fixed {
+background-image: var(--sprite-fio-fixed); /* <-- USA VARIÁVEL */
+filter: brightness(1.2);
+/* --- SUA CORREÇÃO ESTÁ AQUI ---
+  Esta linha força o sprite do fio consertado a alinhar
+  pela parte de baixo da 'caixa' dele, "puxando" ele para baixo
+  e encaixando no soquete.
+*/
+background-position: center bottom;
+}
+
+.wire.broken {
+background-image: var(--sprite-fio-broken); /* <-- USA VARIÁVEL */
+animation: spark 0.3s infinite;
+/* Não mexemos aqui, pois os fios faiscando (da imagem) já estão corretos */
+}
+
+.wire.broken.drag-over {
+filter: brightness(1.8) drop-shadow(0 0 15px #ffffff);
+transform: scale(1.05);
+}
+
+@keyframes spark {
+0%,100% { filter: brightness(1); }
+50% { filter: brightness(2) drop-shadow(0 0 5px #ffcc00); }
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 /* === UI INFERIOR === */
 #ui-bottom {
+<<<<<<< HEAD
  position: absolute;
  bottom: 10px;
  left: 10px;
@@ -184,10 +303,79 @@ html, body {
 #tape:active {
  cursor: grabbing;
  transform: scale(1.1);
+=======
+position: absolute;
+bottom: 10px;
+left: 10px;
+right: 10px;
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+z-index: 10;
+pointer-events: none;
+}
+
+#arara-container {
+display: flex;
+align-items: center;
+gap: 15px;
+pointer-events: all;
+}
+
+#arara-sprite {
+width: clamp(70px, 12vw, 110px);
+filter: drop-shadow(0 0 8px #1af0ff);
+}
+
+#arara-speech-bubble {
+background: rgba(20, 15, 45, 0.8);
+border: 2px solid #4b32ff;
+padding: 12px 16px;
+border-radius: 12px;
+max-width: 60%;
+font-size: 1.1em;
+position: relative;
+backdrop-filter: blur(6px);
+box-shadow: 0 0 15px rgba(80, 60, 255, 0.4);
+}
+
+#arara-speech-bubble::after {
+content: '';
+position: absolute;
+left: -10px;
+top: 20px;
+width: 0;
+height: 0;
+border-top: 10px solid transparent;
+border-bottom: 10px solid transparent;
+border-right: 10px solid #4b32ff;
+}
+
+#tape-container {
+text-align: center;
+pointer-events: all;
+}
+
+#tape {
+width: clamp(60px, 10vw, 80px);
+height: clamp(60px, 10vw, 80px);
+background-image: var(--sprite-tape); /* <-- USA VARIÁVEL */
+background-size: contain;
+background-repeat: no-repeat;
+margin-bottom: 5px;
+cursor: grab;
+transition: transform 0.2s;
+}
+
+#tape:active {
+cursor: grabbing;
+transform: scale(1.1);
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 /* === MODAIS (ESTILO ÚNICO PARA INÍCIO E FIM) === */
 .modal {
+<<<<<<< HEAD
  position: fixed;
  top: 0;
  left: 0;
@@ -278,6 +466,78 @@ html, body {
 
 .hidden {
  display: none;
+=======
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.85);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 100;
+color: white;
+text-align: center;
+font-family: 'Orbitron', sans-serif;
+padding: 1rem;
+box-sizing: border-box;
+}
+
+.modal-content {
+background: linear-gradient(180deg, #2a2f64 0%, #14182b 100%);
+padding: clamp(20px, 5vw, 40px);
+border-radius: 15px;
+border: 3px solid #4b32ff;
+box-shadow: 0 0 30px rgba(121, 82, 255, 0.5);
+width: 100%;
+max-width: 550px;
+}
+
+.modal-content h1 {
+font-size: clamp(2.5rem, 8vw, 3.5rem);
+margin-bottom: 1rem;
+}
+
+.modal-content h2 {
+font-size: clamp(1.2rem, 4vw, 1.8rem);
+margin-bottom: 1.5rem;
+}
+
+.modal-content p {
+font-size: clamp(1rem, 2.5vw, 1.2rem);
+line-height: 1.6;
+font-family: 'Roboto', sans-serif;
+}
+
+.modal-content button {
+background: linear-gradient(90deg, #48bb78, #38a169);
+color: white;
+font-size: clamp(1rem, 3vw, 1.2rem);
+font-family: 'Orbitron', sans-serif;
+padding: 15px 30px;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+transition: transform 0.2s, box-shadow 0.2s;
+margin-top: 20px;
+}
+
+.modal-content button:hover {
+transform: scale(1.05);
+box-shadow: 0 0 15px #48bb78;
+}
+
+#restart-button {
+background: linear-gradient(90deg, #5f3df7, #9a66ff);
+}
+#restart-button:hover {
+box-shadow: 0 0 15px #9a66ff;
+}
+
+.hidden {
+display: none;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 /* === ALERTA DE ORIENTAÇÃO PARA TELAS VERTICAIS === */
@@ -295,6 +555,7 @@ padding: 20px;
 font-family: 'Orbitron', sans-serif;
 }
 
+<<<<<<< HEAD
 @media (orientation: portrait) and (max-height: 850px) {
   #game-wrapper, .modal {
     display: none !important;
@@ -303,4 +564,13 @@ font-family: 'Orbitron', sans-serif;
   #orientation-warning {
     display: flex;
   }
+=======
+@media (orientation: portrait) {
+#game-wrapper, .modal {
+display: none !important;
+}
+#orientation-warning {
+display: flex;
+}
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }

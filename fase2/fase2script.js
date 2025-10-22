@@ -1,5 +1,10 @@
 window.onload = () => {
+<<<<<<< HEAD
 
+=======
+    // --- BLOQUEIO DE ZOOM ---
+    window.addEventListener('wheel', (e) => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 
     // --- DICIONÁRIO DE IDIOMAS COM ITENS TRADUZIDOS ---
     // (Mantive os nomes de arquivos que você atualizou, como 'folha_seca_padrao.png', 'pedaco_de_metal_padrao.png' e 'guardanapo_padrao.png')
@@ -16,10 +21,13 @@ window.onload = () => {
             livro_anterior: "◀ Página Anterior",
             livro_proximo: "Próxima Página ▶",
             livro_pagina: "Página",
+<<<<<<< HEAD
             // === ADICIONADO: Chaves para o aviso de orientação ===
             orientation_titulo: "Vire o seu dispositivo",
             orientation_texto: "Para uma melhor experiência, este jogo deve ser jogado com a tela na horizontal.",
             // ---
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             dialogo_tutorial_titulo: "Bem-vindo, Guardião!",
             dialogo_tutorial_texto: "Olá, Guardião! O rio está cheio de lixo e precisamos da sua ajuda para limpá-lo. Sua missão é arrastar cada item para a lixeira da cor correta. Lembre-se, cada lixo no lugar certo ajuda a salvar nosso planeta. Vamos começar essa limpeza?",
             stage_1_title: "Etapa 1: Começando a Limpeza",
@@ -52,7 +60,10 @@ window.onload = () => {
             end_score_text: "Você reciclou",
             end_score_items: "itens!",
             btn_jogar_novo: "Jogar de Novo",
+<<<<<<< HEAD
             btn_voltar_menu: "Voltar ao Menu", 
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             item_desc: "Descrição",
             item_funfact: "💡 Curiosidade Divertida",
             item_recycling: "♻️ Por que Reciclar?",
@@ -63,7 +74,11 @@ window.onload = () => {
             vidros_label: "Vidros",
             plasticos_label: "Plásticos",
             rejeitos_label: "Rejeitos",
+<<<<<<< HEAD
             organicos_ex: "ORGÂNICOS",
+=======
+            organicos_ex: "ORGANICOS",
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             papel_ex: "PAPEL",
             metais_ex: "METAIS",
             vidros_ex: "VIDROS",
@@ -106,6 +121,10 @@ window.onload = () => {
             }
         },
         'en': {
+<<<<<<< HEAD
+=======
+            // ... (traduções em inglês)
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             titulo_pagina: "SafeQuest - Recycling Guardian",
             titulo_principal: "SafeQuest",
             subtitulo_fase: "Stage 2: Recycling Guardian",
@@ -117,8 +136,11 @@ window.onload = () => {
             livro_anterior: "◀ Previous Page",
             livro_proximo: "Next Page ▶",
             livro_pagina: "Page",
+<<<<<<< HEAD
             orientation_titulo: "Turn your device",
             orientation_texto: "For a better experience, this game should be played with the screen horizontally.",
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             dialogo_tutorial_titulo: "Welcome, Guardian!",
             dialogo_tutorial_texto: "Hello, Guardian! The river is full of trash and we need your help to clean it. Your mission is to drag each item to the correct colored bin. Remember, every piece of trash in the right place helps save our planet. Let's start this cleanup!",
             stage_1_title: "Stage 1: Starting the Cleanup",
@@ -151,7 +173,10 @@ window.onload = () => {
             end_score_text: "You recycled",
             end_score_items: "items!",
             btn_jogar_novo: "Play Again",
+<<<<<<< HEAD
             btn_voltar_menu: "Back to Menu", 
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             item_desc: "Description",
             item_funfact: "💡 Fun Fact",
             item_recycling: "♻️ Why Recycle?",
@@ -205,6 +230,10 @@ window.onload = () => {
             }
         },
         'es': {
+<<<<<<< HEAD
+=======
+            // ... (traduções em espanhol)
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             titulo_pagina: "SafeQuest - Guardián del Reciclaje",
             titulo_principal: "SafeQuest",
             subtitulo_fase: "Fase 2: Guardián del Reciclaje",
@@ -216,8 +245,11 @@ window.onload = () => {
             livro_anterior: "◀ Página Anterior",
             livro_proximo: "Página Siguiente ▶",
             livro_pagina: "Página",
+<<<<<<< HEAD
             orientation_titulo: "Gira tu dispositivo",
             orientation_texto: "Para una mejor experiencia, este juego debe jugarse con la pantalla en horizontal.",
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             dialogo_tutorial_titulo: "¡Bienvenido, Guardián!",
             dialogo_tutorial_texto: "¡Hola, Guardián! El río está lleno de basura y necesitamos tu ajuda para limpiarlo. Tu misión es arrastrar cada artículo al contenedor del color correcto. Recuerda, cada basura en su lugar ajuda a salvar nuestro planeta. ¿Empezamos esta limpieza?",
             stage_1_title: "Etapa 1: Empezando la Limpieza",
@@ -236,21 +268,32 @@ window.onload = () => {
             macaw_hint_2: "¡Casi! Verifica el material de este artículo. La Guía de Reciclaje puede ajudar.",
             macaw_hint_3: "Ese no es el contenedor correcto. Piensa en el tipo de material.",
             macaw_hint_4: "¡Un pequeno error! Intenta arrastrar a otro contenedor.",
+<<<<<<< HEAD
             macaw_perf_1: "¡Distaste los primeiros passos como Guardián del Reciclaje! ¡Sigue praticando y pronto serás un experto!",
+=======
+            macaw_perf_1: "¡Distaste los primeros pasos como Guardián del Reciclaje! ¡Sigue praticando y pronto serás un experto!",
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             macaw_perf_2: "¡Tu progresso é notável! Estás ajudando muito a limpiar el río. ¡Sigue así!",
             macaw_perf_3: "¡Increíble! Dominaste el arte del reciclaje y limpiaste todo a la perfección. ¡Felicidades!",
             macaw_defeat_1: "Se acabó el tiempo, ¡pero no te desanimes! El reciclaje requiere práctica. ¡Inténtalo de nuevo!",
             macaw_defeat_2: "No fue esta vez, pero cada artículo que reciclaste ya marcó la diferencia. ¡La próxima vez, serás más rápido!",
             macaw_defeat_3: "El reloj fue más rápido, pero tu voluntad de ajudar es lo que cuenta. ¡Vamos por el siguiente intento!",
             macaw_other_1: "¡Sigue así! Cada trozo de basura reciclada es una victoria.",
+<<<<<<< HEAD
             macaw_other_2: "Recuerda: separar la basura es um acto importante para el medio ambiente.",
+=======
+            macaw_other_2: "Recuerda: separar la basura es un acto importante para el medio ambiente.",
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             macaw_other_3: "¡La Guía de Reciclaje está ahí para ayudarte si tienes alguna duda!",
             end_title_win: "Maestro del Reciclaje",
             end_title_timeup: "¡Tiempo Agotado!",
             end_score_text: "Reciclaste",
             end_score_items: "artículos!",
             btn_jogar_novo: "Jugar de Nuevo",
+<<<<<<< HEAD
             btn_voltar_menu: "Volver al Menú", 
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             item_desc: "Descripción",
             item_funfact: "💡 Curiosidad Divertida",
             item_recycling: "♻️ ¿Por qué Reciclar?",
@@ -282,7 +325,11 @@ window.onload = () => {
                     { name: "Revista", icon: "assets/revista_padrao.png", icon_hc: "assets/revista_tea.png", icon_cb: "assets/revista_daltonismo.png", description: "Un tipo de libro con muchas fotos y textos coloridos, hecho de papel brillante.", funFact: "Los colores brillantes de las revistas provienen de tintas especiales, pero se pueden quitar durante el proceso de reciclaje.", recyclingInfo: "Reciclar revistas ajuda a disminuir la cantidad de basura y a ahorrar los recursos naturales utilizados para hacer papel nuevo." }
                 ],
                 metais: [
+<<<<<<< HEAD
                     { name: "Lata Aplastada", icon: "assets/latinha_amassada_padrao.png", icon_hc: "assets/latinha_amassada_tea.png", icon_cb: "assets/latinha_amassada_daltonismo.png", description: "Generalmente hecha de aluminio, se usa para guardar refrescos y jugos.", funFact: "¡El aluminio puede reciclarse infinitas veces sin perder sua qualidade! Una lata reciclada puede volver a la estantería en solo 60 días.", recyclingInfo: "Reciclar una sola lata de aluminio ahorra energía suficiente para mantener un televisor encendido durante 3 horas. ¡Es uno de los esfuerzos de reciclaje más potentes que existen!" },
+=======
+                    { name: "Lata Aplastada", icon: "assets/latinha_amassada_padrao.png", icon_hc: "assets/latinha_amassada_tea.png", icon_cb: "assets/latinha_amassada_daltonismo.png", description: "Generalmente hecha de aluminio, se usa para guardar refrescos y jugos.", funFact: "¡El aluminio puede reciclarse infinitas veces sin perder su calidad! Una lata reciclada puede volver a la estantería en solo 60 días.", recyclingInfo: "Reciclar una sola lata de aluminio ahorra energía suficiente para mantener un televisor encendido durante 3 horas. ¡Es uno de los esfuerzos de reciclaje más potentes que existen!" },
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
                     { name: "Trozo de Metal", icon: "assets/pedaco_de_metal_padrao.png", icon_hc: "assets/pedaco_de_metal_tea.png", icon_cb: "assets/pedaco_de_metal_daltonismo.png", description: "Puede ser un clavo, un tornillo o cualquier desecho de objetos hechos de hierro o acero.", funFact: "¡Los imanes solo se pegan a algunos tipos de metales, como el hierro y el acero, pero no al aluminio de las latas!", recyclingInfo: "Reciclar metales previene la minería, que puede contaminar ríos y destruir bosques. El metal reciclado se utiliza para fabricar coches, bicicletas e incluso piezas de avión." },
                     { name: "Clavos", icon: "assets/pregos_padrao.png", icon_hc: "assets/pregos_tea.png", icon_cb: "assets/pregos_daltonismo.png", description: "Pequeñas piezas de metal puntiagudas utilizadas para unir trozos de madera.", funFact: "¡Los clavos solían hacerse a mano, uno por um! Hoy, las máquinas pueden hacer miles de ellos por minuto.", recyclingInfo: "Incluso pequeños, los clavos de metal son reciclables. Recogerlos y desecharlos correctamente ajuda a ahorrar recursos y energía." },
                     { name: "Tapa de Metal", icon: "assets/tampa_padrao.png", icon_hc: "assets/tampa_tea.png", icon_cb: "assets/tampa_daltonismo.png", description: "Son las tapas de botellas de vidrio, generalmente hechas de acero.", funFact: "Mucha gente colecciona tapas de botella por sus diferentes colores y diseños!", recyclingInfo: "Las tapas de metal son 100% reciclables. Se funden y el metal se utiliza para crear nuevos objetos, como alambres y otras piezas de acero." }
@@ -316,19 +363,33 @@ window.onload = () => {
             macaw_triste: 'assets/arara_triste_padrao.png',
             macaw_curiosa: 'assets/arara_curiosa_padrao.png',
             book_closed: 'assets/livro_fechado_fase2_padrao.png',
+<<<<<<< HEAD
             book_open: 'assets/livro_aberto.png' 
+=======
+            book_open: 'assets/livro_aberto.png' // <-- ADICIONADO
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         },
         // Alto Contraste (Mapeado para TEA)
         'high-contrast': {
             background: 'assets/cenario_fase2_tea.png',
             book_closed: 'assets/livro_fechado_fase2_tea.png',
+<<<<<<< HEAD
             book_open: 'assets/livro_aberto_tea.png' 
+=======
+            book_open: 'assets/livro_aberto_tea.png' // <-- ADICIONADO
+            // Arara usa o 'default' como fallback
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         },
         // Daltonismo
         'colorblind-safe': {
             background: 'assets/cenario_fase2_daltonismo.png',
             book_closed: 'assets/livro_fechado_fase2_daltonismo.png',
+<<<<<<< HEAD
             book_open: 'assets/livro_aberto_daltonismo.png' 
+=======
+            book_open: 'assets/livro_aberto_daltonismo.png' // <-- ADICIONADO
+            // Arara usa o 'default' como fallback
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         }
     };
     
@@ -352,31 +413,63 @@ window.onload = () => {
         },
 
         updateUISprites: function() {
+<<<<<<< HEAD
             if (stageMacawSprite && stageMacawSprite.dataset.spriteKey) {
                 stageMacawSprite.src = this.getUISprite(stageMacawSprite.dataset.spriteKey);
             }
             if (endMacawSprite && endMacawSprite.dataset.spriteKey) {
                 endMacawSprite.src = this.getUISprite(endMacawSprite.dataset.spriteKey);
             }
+=======
+            // Atualiza a arara (transição)
+            if (stageMacawSprite && stageMacawSprite.dataset.spriteKey) {
+                stageMacawSprite.src = this.getUISprite(stageMacawSprite.dataset.spriteKey);
+            }
+            // Atualiza a arara (tela final)
+            if (endMacawSprite && endMacawSprite.dataset.spriteKey) {
+                endMacawSprite.src = this.getUISprite(endMacawSprite.dataset.spriteKey);
+            }
+            // Atualiza a arara (mensagens)
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             if (macawSprite && macawSprite.dataset.spriteKey) {
                 macawSprite.src = this.getUISprite(macawSprite.dataset.spriteKey);
             }
             
+<<<<<<< HEAD
+=======
+            // Atualiza o livro fechado
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             const bookSprite = document.querySelector('[data-sprite-key="book_closed"]');
             if (bookSprite) {
                 bookSprite.src = this.getUISprite('book_closed');
             }
             
+<<<<<<< HEAD
             const gameContainer = document.getElementById('game-container');
             if (gameContainer) {
                 const newBgImage = this.getUISprite('background');
                 gameContainer.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('${newBgImage}')`;
             }
 
+=======
+            // Atualiza o cenário
+            const gameContainer = document.getElementById('game-container');
+            if (gameContainer) {
+                const newBgImage = this.getUISprite('background');
+                // Preserva o gradiente do seu CSS
+                gameContainer.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('${newBgImage}')`;
+            }
+
+            // --- BLOCO NOVO PARA O LIVRO ABERTO ---
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             const bookContainer = document.querySelector('#book-modal .book-container');
             if (bookContainer) {
                 bookContainer.style.backgroundImage = `url('${this.getUISprite('book_open')}')`;
             }
+<<<<<<< HEAD
+=======
+            // --- FIM DO BLOCO NOVO ---
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         }
     };
     
@@ -390,7 +483,10 @@ window.onload = () => {
     const startButton = document.getElementById('start-button');
     const nextStageButton = document.getElementById('next-stage-button');
     const finalActionButton = document.getElementById('final-action-button'); 
+<<<<<<< HEAD
     const backToMenuButton = document.getElementById('back-to-menu-button'); 
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     
     const stageScoreEl = document.getElementById('stage-score');
     
@@ -486,6 +582,11 @@ window.onload = () => {
 
 
     // --- FUNÇÕES DE ACESSIBILIDADE E LOCALIZAÇÃO ---
+<<<<<<< HEAD
+=======
+
+    // Esta função já lê o modo de cor e escolhe o ícone certo
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     function getIconPathByColorMode(item) {
         switch (settings.colorMode) {
             case 'high-contrast':
@@ -497,19 +598,38 @@ window.onload = () => {
         }
     }
 
+<<<<<<< HEAD
+=======
+    // *** FUNÇÃO MODIFICADA ***
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     function loadSettings() {
         const savedSettings = JSON.parse(localStorage.getItem('safequest-settings'));
         if (savedSettings) {
             settings = { ...settings, ...savedSettings };
         }
         
+<<<<<<< HEAD
+=======
+        // --- INÍCIO DA MODIFICAÇÃO ---
+        // Adiciona o data-attribute no contêiner para o CSS (lixeiras) ler
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         const gameContainer = document.getElementById('game-container');
         if (gameContainer) {
             gameContainer.dataset.colorMode = settings.colorMode;
         }
 
+<<<<<<< HEAD
         AccessibilityManager.setPalette(settings.colorMode); 
         updateTexts(); 
+=======
+        // Define a paleta de sprites (cenário, arara, livros)
+        AccessibilityManager.setPalette(settings.colorMode); 
+        // --- FIM DA MODIFICAÇÃO ---
+
+        updateTexts(); // Atualiza textos
+        
+        // Atualiza os sprites da UI (cenário, arara, livros)
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         AccessibilityManager.updateUISprites();
     }
     
@@ -634,14 +754,20 @@ window.onload = () => {
         itemDetailRecycling.textContent = item.recyclingInfo;
         itemDetailModal.classList.remove('hidden');
         itemDetailModal.classList.add('flex');
+<<<<<<< HEAD
         isPaused = true; // <-- ADICIONADO: Pausa ao abrir detalhes
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     }
 
     function closeItemDetails() {
         playSound('clique-ui'); 
         itemDetailModal.classList.add('hidden');
         itemDetailModal.classList.remove('flex');
+<<<<<<< HEAD
         // Só despausa se o livro também estiver fechado
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         if (bookModal.classList.contains('hidden')) {
              isPaused = false;
         }
@@ -651,6 +777,7 @@ window.onload = () => {
         window.location.href = "selecao_de_fases.html"; 
     }
 
+<<<<<<< HEAD
     // === ADICIONADO DA FASE 1: Função de Orientação ===
     function handleOrientationChange(e) {
         const orientationWarning = document.getElementById('orientation-warning');
@@ -679,6 +806,8 @@ window.onload = () => {
     }
     // === FIM DA ADIÇÃO ===
 
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     function init() {
         startButton.addEventListener('click', () => { 
             initAudio(); 
@@ -696,11 +825,14 @@ window.onload = () => {
             }
         });
 
+<<<<<<< HEAD
         backToMenuButton.addEventListener('click', () => {
             playSound('clique-ui');
             window.location.href = "../menu/menu_index.html";
         });
 
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         nextStageButton.addEventListener('click', () => {
             playSound('clique-ui'); 
             handleNextButtonClick();
@@ -720,6 +852,7 @@ window.onload = () => {
         });
 
         setupDragAndDrop(); // Para mouse/desktop
+<<<<<<< HEAD
         setupTouchControls(); 
         setupBook();
 
@@ -728,6 +861,10 @@ window.onload = () => {
         portraitMediaQuery.addEventListener('change', handleOrientationChange);
         handleOrientationChange(portraitMediaQuery); // Checa a orientação inicial
         // === FIM DA ADIÇÃO ===
+=======
+        setupTouchControls(); // <-- ADIÇÃO: Para celular/tablet
+        setupBook();
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     }
     
     function startIntroduction() {
@@ -737,6 +874,10 @@ window.onload = () => {
         showNextIntroDialogue();
     }
     
+<<<<<<< HEAD
+=======
+    // *** MODIFICADO ***: Usa o AccessibilityManager
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     function showNextIntroDialogue() {
         if (introStep < introDialogues.length) {
             const dialogue = introDialogues[introStep];
@@ -748,12 +889,18 @@ window.onload = () => {
             document.getElementById('stage-explanation').textContent = dialogue.text;
             stageTransitionScreen.classList.remove('hidden');
             stageTransitionScreen.classList.add('flex');
+<<<<<<< HEAD
             isPaused = true; // <-- ADICIONADO: Pausa durante o diálogo
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             introStep++;
         } else {
             isShowingIntro = false;
             stageTransitionScreen.classList.add('hidden');
+<<<<<<< HEAD
             isPaused = false; // <-- ADICIONADO: Despausa para começar
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             startGame();
         }
     }
@@ -770,7 +917,10 @@ window.onload = () => {
         stopGameIntervals();
         startScreen.classList.add('hidden');
         endScreen.classList.add('hidden');
+<<<<<<< HEAD
         stageTransitionScreen.classList.add('hidden'); // Garante que está escondido
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         gameHeader.classList.remove('hidden');
         gameMain.classList.remove('hidden');
         timer = INITIAL_TIME;
@@ -813,6 +963,7 @@ window.onload = () => {
                 availableItems.push({ ...item, category: cat });
             });
         });
+<<<<<<< HEAD
 
         // Modificado para gerar apenas os itens da meta (goal)
         for (let i = 0; i < stage.goal; i++) {
@@ -824,11 +975,29 @@ window.onload = () => {
             trashEl.draggable = true;
             trashEl.dataset.category = randomItem.category;
             trashEl.id = `trash-${i}-${Date.now()}`;
+=======
+        const itemsToGenerate = [];
+        for (let i = 0; i < stage.goal; i++) {
+            const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)];
+            itemsToGenerate.push(randomItem);
+        }
+        itemsToGenerate.forEach((item, index) => {
+            const trashEl = document.createElement('div');
+            trashEl.className = 'trash-item';
+            trashEl.style.backgroundImage = `url('${getIconPathByColorMode(item)}')`; // Função já existente
+            trashEl.draggable = true;
+            trashEl.dataset.category = item.category;
+            trashEl.id = `trash-${index}-${Date.now()}`;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             trashEl.style.left = `${Math.random() * 95}%`; 
             trashEl.style.top = `${Math.random() * 95}%`;
             trashEl.style.transform = `rotate(${Math.random() * 360}deg)`;
             trashSpawnArea.appendChild(trashEl);
+<<<<<<< HEAD
         }
+=======
+        });
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     }
 
     function handleCorrectDrop(trashEl, binEl) {
@@ -866,6 +1035,10 @@ window.onload = () => {
         setTimeout(() => binEl.classList.remove('wrong-bin'), 500);
     }
 
+<<<<<<< HEAD
+=======
+    // *** MODIFICADO ***: Usa o AccessibilityManager
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     function advanceStage() {
         isPaused = true;
         currentStageIndex++;
@@ -900,11 +1073,15 @@ window.onload = () => {
                 timerEl.classList.remove('timer-warning');
                 stopSound('alerta-cronometro'); 
             }
+<<<<<<< HEAD
             if (timer <= 0) {
                 timer = 0; // Trava em 0
                 updateTimerDisplay();
                 endGame(false);
             }
+=======
+            if (timer <= 0) endGame(false);
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         }, 1000);
     }
 
@@ -919,12 +1096,20 @@ window.onload = () => {
         stageScoreEl.textContent = `${currentStageScore} / ${stage.goal}`; 
     }
 
+<<<<<<< HEAD
+=======
+    // *** MODIFICADO ***: Usa o AccessibilityManager
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     function showMacawMessage(text, duration = 4000, expression = 'falando') {
         if (macawTimeout) clearTimeout(macawTimeout);
 
         const spriteKey = `macaw_${expression}`; 
         macawSprite.dataset.spriteKey = spriteKey; 
+<<<<<<< HEAD
         macawSprite.src = AccessibilityManager.getUISprite(spriteKey); 
+=======
+        macawSprite.src = AccessibilityManager.getUISprite(spriteKey); // Pega o sprite padrão
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 
         macawText.textContent = text;
         macawMessage.classList.remove('opacity-0');
@@ -943,8 +1128,13 @@ window.onload = () => {
         }, 20000 + Math.random() * 15000);
     }
 
+<<<<<<< HEAD
     function endGame(isWinner) {
         isPaused = true; // Pausa o jogo
+=======
+    // *** MODIFICADO ***: Usa o AccessibilityManager
+    function endGame(isWinner) {
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         stopGameIntervals();
         playSound('avaliacao-final'); 
         gameHeader.classList.add('hidden');
@@ -955,16 +1145,25 @@ window.onload = () => {
         starsContainer.innerHTML = '';
         let stars = 0, message = "", title = "";
         let macawEndSpriteKey = 'macaw_triste'; 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         if (isWinner) {
             title = texts.end_title_win;
             stars = 3;
             message = dialogues.performance[2];
             macawEndSpriteKey = 'macaw_feliz'; 
+<<<<<<< HEAD
             
             if (finalActionButton) {
                 finalActionButton.setAttribute('data-key', 'btn_jogar_novo'); 
                 finalActionButton.textContent = texts.btn_jogar_novo; 
+=======
+            if (finalActionButton) {
+                finalActionButton.textContent = texts.btn_continuar; 
+                finalActionButton.removeAttribute('data-key'); 
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             }
         } else {
             title = texts.end_title_timeup;
@@ -990,7 +1189,11 @@ window.onload = () => {
         }
         
         endMacawSprite.dataset.spriteKey = macawEndSpriteKey; 
+<<<<<<< HEAD
         endMacawSprite.src = AccessibilityManager.getUISprite(macawEndSpriteKey);
+=======
+        endMacawSprite.src = AccessibilityManager.getUISprite(macawEndSpriteKey); // Pega o sprite padrão
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 
         for (let i = 0; i < 3; i++) {
             starsContainer.appendChild(document.createElement('span')).textContent = i < stars ? '⭐' : '☆';
@@ -1006,10 +1209,13 @@ window.onload = () => {
     function setupDragAndDrop() {
         document.addEventListener('dragstart', e => { 
             if (e.target.classList.contains('trash-item')) { 
+<<<<<<< HEAD
                 if (isPaused || isShowingIntro) {
                     e.preventDefault();
                     return;
                 }
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
                 playSound('pegar-soltar'); 
                 e.dataTransfer.setData('text/plain', e.target.dataset.category); 
                 e.dataTransfer.setData('elementId', e.target.id); 
@@ -1034,7 +1240,10 @@ window.onload = () => {
             
             bin.addEventListener('drop', e => { 
                 e.preventDefault(); 
+<<<<<<< HEAD
                 if (isPaused) return;
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
                 bin.classList.remove('drag-over'); 
                 const droppedCategory = e.dataTransfer.getData('text/plain'); 
                 const binCategory = bin.dataset.category; 
@@ -1054,6 +1263,11 @@ window.onload = () => {
     // --- INÍCIO: FUNÇÕES DE CONTROLE DE TOQUE (TOUCH) (ADIÇÃO) ---
 
     function setupTouchControls() {
+<<<<<<< HEAD
+=======
+        // Usamos 'document' para pegar os lixos que são criados dinamicamente
+        // passive: false é crucial para podermos usar e.preventDefault() no 'touchmove'
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         document.addEventListener('touchstart', handleTouchStart, { passive: false });
         document.addEventListener('touchmove', handleTouchMove, { passive: false });
         document.addEventListener('touchend', handleTouchEnd);
@@ -1061,6 +1275,7 @@ window.onload = () => {
 
     function handleTouchStart(e) {
         const trashEl = e.target.closest('.trash-item');
+<<<<<<< HEAD
         if (!trashEl || isPaused || isShowingIntro) return;
         e.preventDefault();
         activeTrashEl = trashEl;
@@ -1101,6 +1316,84 @@ window.onload = () => {
                 currentDroppable.classList.remove('drag-over');
             }
             currentDroppable = dropTarget;
+=======
+        
+        // Ignora o toque se não for em um lixo ou se o jogo estiver pausado/em introdução
+        if (!trashEl || isPaused || isShowingIntro) return;
+
+        // Previne o comportamento padrão (como rolar a página)
+        e.preventDefault();
+
+        activeTrashEl = trashEl;
+        playSound('pegar-soltar');
+
+        const touch = e.touches[0];
+        const spawnAreaRect = trashSpawnArea.getBoundingClientRect();
+        const rect = activeTrashEl.getBoundingClientRect();
+
+        // Calcula o "offset" do toque (onde o dedo pegou dentro do lixo)
+        // Isso previne que o lixo "salte" para o dedo
+        initialTouchX = touch.clientX - rect.left;
+        initialTouchY = touch.clientY - rect.top;
+
+        // Salva os estilos originais para podermos resetar se o drop for inválido
+        originalTrashLeft = activeTrashEl.style.left;
+        originalTrashTop = activeTrashEl.style.top;
+        originalTrashTransform = activeTrashEl.style.transform;
+
+        // Estilos de "pegar"
+        activeTrashEl.classList.add('opacity-50');
+        activeTrashEl.style.zIndex = 100;
+        activeTrashEl.style.transition = 'none'; // Remove transição para o movimento ser instantâneo
+
+        // Move o lixo para a posição inicial do toque (já aplicando o offset)
+        // Convertendo de viewport (clientX/Y) para a área de spawn (px)
+        let newX = touch.clientX - spawnAreaRect.left - initialTouchX;
+        let newY = touch.clientY - spawnAreaRect.top - initialTouchY;
+
+        activeTrashEl.style.left = `${newX}px`;
+        activeTrashEl.style.top = `${newY}px`;
+        activeTrashEl.style.transform = 'scale(1.1)'; // Aumenta o lixo
+    }
+
+    function handleTouchMove(e) {
+        // Só continua se estivermos arrastando um lixo e o jogo não estiver pausado
+        if (!activeTrashEl || isPaused || isShowingIntro) return;
+
+        e.preventDefault(); // Previne rolagem
+
+        const touch = e.touches[0];
+        const spawnAreaRect = trashSpawnArea.getBoundingClientRect();
+
+        // Calcula a nova posição do lixo em pixels, dentro da área de spawn
+        let newX = touch.clientX - spawnAreaRect.left - initialTouchX;
+        let newY = touch.clientY - spawnAreaRect.top - initialTouchY;
+
+        // Atualiza a posição do lixo
+        activeTrashEl.style.left = `${newX}px`;
+        activeTrashEl.style.top = `${newY}px`;
+
+        // --- Lógica de "Drag Over" / "Drag Leave" ---
+        
+        // Esconde o lixo que está sendo arrastado por um instante
+        // para que o elementFromPoint possa "ver" o que está embaixo dele
+        activeTrashEl.style.display = 'none';
+        const elAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+        activeTrashEl.style.display = ''; // Mostra de novo
+
+        const dropTarget = elAtPoint ? elAtPoint.closest('.bin') : null;
+
+        // Verifica se mudamos de lixeira (ou entramos/saímos de uma)
+        if (dropTarget !== currentDroppable) {
+            // Remove o "drag-over" da lixeira anterior
+            if (currentDroppable) {
+                currentDroppable.classList.remove('drag-over');
+            }
+            
+            currentDroppable = dropTarget;
+
+            // Adiciona o "drag-over" na lixeira nova, se ela estiver ativa no jogo
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             if (currentDroppable && currentDroppable.classList.contains('active')) {
                 currentDroppable.classList.add('drag-over');
             }
@@ -1108,15 +1401,28 @@ window.onload = () => {
     }
 
     function handleTouchEnd(e) {
+<<<<<<< HEAD
         if (!activeTrashEl) return;
         const elToReset = activeTrashEl; 
         activeTrashEl = null; 
         let droppedSuccessfully = false;
+=======
+        // Só continua se estávamos arrastando um lixo
+        if (!activeTrashEl) return;
+
+        const elToReset = activeTrashEl; // Salva a referência
+        activeTrashEl = null; // Marca que não estamos mais arrastando
+        
+        let droppedSuccessfully = false;
+
+        // --- Lógica de "Drop" ---
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         if (currentDroppable) {
             const droppedCategory = elToReset.dataset.category;
             const binCategory = currentDroppable.dataset.category;
             const isCorrect = (droppedCategory === binCategory);
             const isActive = currentDroppable.classList.contains('active');
+<<<<<<< HEAD
             if (isActive && isCorrect) {
                 handleCorrectDrop(elToReset, currentDroppable);
                 droppedSuccessfully = true;
@@ -1134,10 +1440,44 @@ window.onload = () => {
             elToReset.style.top = originalTrashTop;
             elToReset.style.transform = originalTrashTransform;
             setTimeout(() => {
+=======
+
+            if (isActive && isCorrect) {
+                // O drop foi correto!
+                handleCorrectDrop(elToReset, currentDroppable);
+                droppedSuccessfully = true;
+            } else {
+                // O drop foi na lixeira errada
+                handleWrongDrop(currentDroppable);
+            }
+            
+            // Limpa o feedback visual da lixeira
+            currentDroppable.classList.remove('drag-over');
+            currentDroppable = null;
+        }
+
+        // Se o drop não foi bem-sucedido (soltou no lugar errado ou na lixeira errada)
+        if (!droppedSuccessfully) {
+            // Restaura os estilos originais com uma transição suave
+            elToReset.style.transition = 'left 0.3s ease, top 0.3s ease, transform 0.3s ease, opacity 0.3s ease, z-index 0.3s ease';
+            elToReset.classList.remove('opacity-50');
+            elToReset.style.zIndex = 15; // z-index padrão do .trash-item
+            elToReset.style.left = originalTrashLeft;
+            elToReset.style.top = originalTrashTop;
+            elToReset.style.transform = originalTrashTransform;
+
+            // Remove a transição customizada após a animação
+            setTimeout(() => {
+                // Restaura a transição original do CSS
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
                 elToReset.style.transition = 'transform 0.2s ease, opacity 0.3s ease'; 
             }, 300);
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     // --- FIM: FUNÇÕES DE CONTROLE DE TOQUE (TOUCH) ---
 
 
@@ -1171,6 +1511,10 @@ window.onload = () => {
         }
     }
     
+<<<<<<< HEAD
+=======
+    // Função usa getIconPathByColorMode, então já está correta
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     function renderPage(pageNumber) { 
         currentPage = pageNumber; 
         const pageData = bookPages[currentPage - 1] || [];
@@ -1196,7 +1540,11 @@ window.onload = () => {
                 itemEl.className = 'book-item'; 
                 itemEl.onclick = () => { showItemDetails(item); };
                 const img = document.createElement('img');
+<<<<<<< HEAD
                 img.src = getIconPathByColorMode(item); 
+=======
+                img.src = getIconPathByColorMode(item); // Correto
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
                 img.alt = item.name;
                 img.className = ''; 
                 const name = document.createElement('p');

@@ -16,17 +16,25 @@ const langData = {
         idioma_label: "Idioma",
         modo_cor_label: "Modo de Cor",
         cor_padrao: "Padrão",
+<<<<<<< HEAD
         cor_alto_contraste: "TEA",
+=======
+        cor_alto_contraste: "Alto Contraste",
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         cor_daltonismo: "Daltonismo",
         btn_fechar: "Fechar",
         selecionar_fase_titulo: "Selecionar Fase",
         fase_label: "Fase",
+<<<<<<< HEAD
         voltar_menu: "Voltar",
 
         // 👇 ADICIONE ESTAS NOVAS CHAVES 👇
         fase1_titulo: "COMO MONTAR CESTAS DE SUPRIMENTOS",
         fase2_titulo: "SEPARAÇÃO DO LIXO",
         fase3_titulo: "CUIDADO COM OS FIOS!"
+=======
+        voltar_menu: "Voltar"
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     },
     'en': {
         titulo_principal: "Safe Quest",
@@ -38,17 +46,25 @@ const langData = {
         idioma_label: "Language",
         modo_cor_label: "Color Mode",
         cor_padrao: "Default",
+<<<<<<< HEAD
         cor_alto_contraste: "ASD",
+=======
+        cor_alto_contraste: "High Contrast",
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         cor_daltonismo: "Colorblind Safe",
         btn_fechar: "Close",
         selecionar_fase_titulo: "Select Level",
         fase_label: "Level",
+<<<<<<< HEAD
         voltar_menu: "Back",
 
         // 👇 ADICIONE ESTAS NOVAS CHAVES (tradução de exemplo) 👇
         fase1_titulo: "HOW TO ASSEMBLE SUPPLY BASKETS",
         fase2_titulo: "WASTE SEPARATION",
         fase3_titulo: "BEWARE OF WIRES!"
+=======
+        voltar_menu: "Back"
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     },
     'es': {
         titulo_principal: "Safe Quest",
@@ -60,17 +76,25 @@ const langData = {
         idioma_label: "Idioma",
         modo_cor_label: "Modo de Color",
         cor_padrao: "Estándar",
+<<<<<<< HEAD
         cor_alto_contraste: "TEA",
+=======
+        cor_alto_contraste: "Alto Contraste",
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         cor_daltonismo: "Daltónico",
         btn_fechar: "Cerrar",
         selecionar_fase_titulo: "Seleccionar Nivel",
         fase_label: "Nivel",
+<<<<<<< HEAD
         voltar_menu: "Volver",
 
         // 👇 ADICIONE ESTAS NOVAS CHAVES (tradução de exemplo) 👇
         fase1_titulo: "CÓMO ARMAR CESTAS DE SUMINISTROS",
         fase2_titulo: "SEPARACIÓN DE RESIDUOS",
         fase3_titulo: "¡CUIDADO CON LOS CABLES!"
+=======
+        voltar_menu: "Volver"
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     }
 };
 const languageKeys = Object.keys(languages);
@@ -101,7 +125,11 @@ const colorModeLabel = document.getElementById('color-mode-label');
 // --- ÁUDIO ---
 const menuMusic = new Audio('assets/musica-menu.mp3');
 menuMusic.loop = true;
+<<<<<<< HEAD
 menuMusic.volume = 1.0;
+=======
+menuMusic.volume = 0.5;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 
 const clickSound = new Audio('assets/clique-ui.mp3');
 clickSound.volume = 0.7;

@@ -11,14 +11,21 @@
 body.high-contrast {
     --bg-image: none;
     --bg-color: #000;
+<<<<<<< HEAD
     --title-color: #ffff00;
     --title-shadow: 2px 2px 0px #fff;
     --button-glow-color: #ffff00;
+=======
+    --title-color: #FFFF00;
+    --title-shadow: 2px 2px 0px #FFF;
+    --button-glow-color: #FFFF00;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     --star-opacity: 0;
 }
 
 body.colorblind-safe {
     filter: hue-rotate(180deg) saturate(1.2);
+<<<<<<< HEAD
     --button-glow-color: #ffa500;
 }
 
@@ -38,21 +45,39 @@ body {
     background-color: var(--bg-color);
 }
 
+=======
+    --button-glow-color: #FFA500;
+}
+
+
+/* --- GERAL E FUNDO (BASE MOBILE-FIRST) --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    font-family: 'Luckiest Guy', cursive;
+    background-color: var(--bg-color);
+}
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 body {
     background-image: var(--bg-image);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+=======
+    display: flex; justify-content: center; align-items: center; text-align: center;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     animation: background-pan-zoom 40s linear infinite;
     transition: filter 0.5s ease;
 }
 
 /* --- EFEITOS DE FUNDO --- */
 .background-effects {
+<<<<<<< HEAD
     position: absolute;
     top: 0;
     left: 0;
@@ -444,6 +469,128 @@ body {
 }
 
 /* --- TELA DE SELEÇÃO DE FASES --- */
+=======
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1; pointer-events: none;
+    opacity: var(--star-opacity);
+    transition: opacity 0.5s ease;
+}
+#stars-small, #stars-medium, #stars-large { position: absolute; width: 1px; height: 1px; background: transparent; border-radius: 50%;}
+#stars-small { animation: animate-stars 150s linear infinite, twinkle-1 2s ease-in-out infinite; box-shadow: -1vw 77vh #FFF, 59vw 70vh #FFF, -3vw 95vh #FFF, 93vw 3vh #FFF, 75vw 61vh #FFF, 24vw 89vh #FFF, 3vw 69vh #FFF, 62vw 14vh #FFF, 17vw 52vh #FFF, 9vw 58vh #FFF, 73vw 9vh #FFF, 54vw 46vh #FFF, 30vw 98vh #FFF, 89vw 59vh #FFF, 8vw 28vh #FFF, 5vw 6vh #FFF, 63vw 41vh #FFF, 34vw 16vh #FFF, 91vw 33vh #FFF, 51vw 9vh #FFF, 72vw 43vh #FFF, 18vw 91vh #FFF, 45vw 32vh #FFF, 88vw 80vh #FFF, 67vw 21vh #FFF, 99vw 50vh #FFF, 33vw 15vh #FFF, 5vw 88vh #FFF, 82vw 64vh #FFF, 49vw 19vh #FFF, 21vw 4vh #FFF, 96vw 99vh #FFF, 40vw 55vh #FFF, 78vw 3vh #FFF, 13vw 27vh #FFF, 37vw 73vh #FFF, 69vw 88vh #FFF, 94vw 12vh #FFF, 28vw 67vh #FFF, 55vw 93vh #FFF, 2vw 39vh #FFF, 80vw 7vh #FFF, 15vw 49vh #FFF, 60vw 2vh #FFF, 42vw 82vh #FFF, 84vw 35vh #FFF, 26vw 58vh #FFF, 98vw 72vh #FFF, 10vw 8vh #FFF, 47vw 47vh #FFF;}
+#stars-medium { width: 2px; height: 2px; animation: animate-stars 100s linear infinite, twinkle-2 3s ease-in-out infinite; box-shadow: 20vw 30vh #FFF, 80vw 90vh #FFF, 5vw 50vh #FFF, 95vw 10vh #FFF, 50vw 5vh #FFF, 15vw 85vh #FFF, 70vw 20vh #FFF, 30vw 65vh #FFF, 90vw 75vh #FFF, 40vw 40vh #FFF, 60vw 15vh #FFF, 25vw 95vh #FFF, 85vw 55vh #FFF, 3vw 25vh #FFF, 77vw 80vh #FFF, 48vw 35vh #FFF, 10vw 70vh #FFF, 65vw 45vh #FFF, 33vw 88vh #FFF, 98vw 30vh #FFF, 22vw 5vh #FFF, 73vw 60vh #FFF, 18vw 42vh #FFF, 57vw 98vh #FFF, 8vw 12vh #FFF;}
+#stars-large { width: 3px; height: 3px; animation: animate-stars 50s linear infinite, twinkle-3 4s ease-in-out infinite; box-shadow: 10vw 20vh #FFF, 88vw 70vh #FFF, 40vw 80vh #FFF, 75vw 15vh #FFF, 25vw 60vh #FFF, 95vw 40vh #FFF, 55vw 55vh #FFF, 5vw 90vh #FFF, 68vw 30vh #FFF, 30vw 5vh #FFF, 80vw 95vh #FFF, 15vw 45vh #FFF, 50vw 25vh #FFF, 90vw 85vh #FFF, 20vw 75vh #FFF;}
+.star { position: absolute; width: 3px; height: 3px; background: #FFF; border-radius: 50%; box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8); opacity: 0;}
+.star::after { content: ''; position: absolute; width: 200px; height: 1px; background: linear-gradient(to right, rgba(255, 255, 255, 0.6), transparent); transform-origin: left center; transform: translateY(1px) rotate(-45deg);}
+.star:nth-of-type(1) { animation: fly-by-1 7s linear infinite 1s; }
+.star:nth-of-type(2) { animation: fly-by-2 8s linear infinite 3s; }
+.star:nth-of-type(3) { animation: fly-by-3 6s linear infinite 5s; }
+
+/* --- LAYOUT DO MENU PRINCIPAL --- */
+.menu-container, #settings-button { position: relative; z-index: 10; }
+.menu-container { display: flex; flex-direction: column; align-items: center; }
+.game-title {
+    color: var(--title-color); font-size: 18vw; line-height: 1; margin-bottom: 30px;
+    text-shadow: var(--title-shadow);
+    animation: title-drop-in 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, title-glow 2.5s ease-in-out infinite 1.5s;
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+#play-button { background: none; border: none; cursor: pointer; padding: 0; width: 50vw; max-width: 300px; animation: float 3s ease-in-out infinite, fadeIn 1.5s ease-out;}
+#play-button img { width: 100%; height: auto; transition: transform 0.2s ease, filter 0.2s ease; animation: button-glow 3s ease-in-out infinite;}
+#play-button:hover img { transform: scale(1.1); filter: drop-shadow(0 0 25px #00ffff) brightness(1.1); }
+#play-button.clicked { animation: button-click-effect 0.4s ease; }
+#settings-button { 
+    background: none; border: none; cursor: pointer; padding: 0; position: absolute; bottom: 20px; right: 20px; 
+    width: 15vw; max-width: 70px; min-width: 50px;
+}
+#settings-button img { width: 100%; height: auto; transition: transform 0.4s ease; animation: slow-rotate 10s linear infinite;}
+#settings-button:hover img { transform: scale(1.15) rotate(360deg); animation-duration: 2s; }
+
+/* --- MENU DE CONFIGURAÇÕES (MODAL) --- */
+#settings-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); z-index: 99;
+    opacity: 1; transition: opacity 0.3s ease;
+}
+#settings-modal {
+    position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 90%; max-width: 400px;
+    background-color: #2c3e50;
+    border: 4px solid #ecf0f1; border-radius: 20px;
+    padding: 20px; z-index: 100; color: white;
+    display: flex; flex-direction: column; gap: 15px;
+    opacity: 1; transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#settings-overlay.hidden, #settings-modal.hidden { opacity: 0; pointer-events: none; }
+#settings-modal.hidden { transform: translate(-50%, -50%) scale(0.9); }
+.settings-title { font-size: clamp(1.8em, 5vw, 2.2em); text-shadow: 2px 2px 2px #000; }
+.setting-option p { margin-bottom: 10px; font-size: clamp(1em, 4vw, 1.2em); }
+.settings-btn {
+    font-family: 'Luckiest Guy', cursive; font-size: clamp(1em, 4vw, 1.2em);
+    width: 100%; padding: 10px;
+    background-color: #3498db; color: white;
+    border: 2px solid #2980b9; border-radius: 10px;
+    cursor: pointer; transition: background-color 0.2s, transform 0.2s;
+}
+.settings-btn:hover { background-color: #2980b9; transform: scale(1.05); }
+.close-btn { background-color: #e74c3c; border-color: #c0392b; margin-top: 10px; }
+.close-btn:hover { background-color: #c0392b; }
+.color-modes { display: flex; gap: 10px; }
+.color-mode-btn { flex: 1; padding: 8px; font-size: clamp(0.8em, 3vw, 0.9em); }
+.color-mode-btn.active { background-color: #f1c40f; color: #000; border-color: #f39c12; }
+
+/* ======================================================= */
+/* --- AJUSTES DE RESPONSIVIDADE PARA TELAS DIFERENTES --- */
+/* ======================================================= */
+@media (max-width: 768px) {
+    .game-title { font-size: 20vw; }
+    #play-button { width: 60vw; }
+    #settings-button { width: 18vw; }
+    #settings-modal { gap: 12px; }
+}
+
+@media (max-width: 480px) {
+    .game-title { font-size: 22vw; margin-bottom: 20px; }
+    #play-button { width: 70vw; }
+    #settings-button { width: 20vw; bottom: 15px; right: 15px; }
+    .color-modes { flex-direction: column; }
+    .level-grid { gap: 15px; }
+    .level-button { width: 100px; height: 100px; font-size: 1.8em; }
+}
+
+@media (min-width: 600px) {
+    .game-title { font-size: 15vw; max-width: 800px; }
+    #settings-modal { max-width: 500px; }
+    .settings-title { font-size: 2.5em; }
+}
+@media (min-width: 1024px) {
+    .game-title { font-size: 120px; }
+    #settings-modal { max-width: 550px; gap: 20px; padding: 30px; }
+    .settings-btn { font-size: 1.3em; padding: 15px; }
+    .setting-option p { font-size: 1.4em; }
+}
+
+/* --- KEYFRAMES (ANIMAÇÕES) --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes background-pan-zoom { 0%{background-size:110%;background-position:50% 50%} 25%{background-position:45% 55%} 50%{background-size:120%;background-position:50% 50%} 75%{background-position:55% 45%} 100%{background-size:110%;background-position:50% 50%} }
+@keyframes animate-stars { from {transform: translateY(0px)} to {transform: translateY(-2000px)} }
+@keyframes twinkle-1 { 50% {opacity: 0.4} } @keyframes twinkle-2 { 50% {opacity: 0.6} } @keyframes twinkle-3 { 50% {opacity: 0.8} }
+@keyframes fly-by-1 { 0%{opacity:0;top:-10%;left:40%} 20%{opacity:1} 80%{opacity:1} 100%{opacity:0;top:70%;left:110%} }
+@keyframes fly-by-2 { 0%{opacity:0;top:20%;left:-10%} 20%{opacity:1} 80%{opacity:1} 100%{opacity:0;top:90%;left:100%} }
+@keyframes fly-by-3 { 0%{opacity:0;top:50%;left:-10%} 20%{opacity:1} 80%{opacity:1} 100%{opacity:0;top:110%;left:80%} }
+@keyframes title-drop-in { 0%{transform:translateY(-100px) scale(.8);opacity:0} 70%{transform:translateY(10px) scale(1.05)} 100%{transform:translateY(0) scale(1);opacity:1} }
+@keyframes title-glow { 0%,100%{text-shadow:var(--title-shadow),0 0 10px #fff} 50%{text-shadow:var(--title-shadow),0 0 25px #fff} }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+@keyframes button-glow { 0%,100%{filter:drop-shadow(0 0 10px var(--button-glow-color))} 50%{filter:drop-shadow(0 0 20px var(--button-glow-color))} }
+@keyframes button-click-effect { 0%{transform:scale(1)} 50%{transform:scale(.9) rotate(-5deg)} 100%{transform:scale(1)} }
+@keyframes slow-rotate { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+/* ========================================= */
+/* --- TELA DE SELEÇÃO DE FASES (NOVO) --- */
+/* ========================================= */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 #level-select-container {
     position: relative;
     z-index: 10;
@@ -468,26 +615,49 @@ body {
 
 .level-select-title {
     color: var(--title-color);
+<<<<<<< HEAD
     font-size: clamp(2.5rem, 15vh, 6rem);
+=======
+    font-size: 12vw;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     line-height: 1;
     margin-bottom: 40px;
     text-shadow: var(--title-shadow);
     transition: color 0.5s ease, text-shadow 0.5s ease;
 }
+<<<<<<< HEAD
+=======
+@media (min-width: 600px) {
+    .level-select-title { font-size: 10vw; max-width: 700px; }
+}
+@media (min-width: 1024px) {
+    .level-select-title { font-size: 90px; }
+}
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 
 .level-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+<<<<<<< HEAD
     gap: clamp(10px, 2.5vh, 25px);
+=======
+    gap: 20px;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     margin-bottom: 40px;
 }
 
 .level-button {
     font-family: 'Luckiest Guy', cursive;
+<<<<<<< HEAD
     font-size: clamp(1.4rem, 4vh, 2rem);
     width: clamp(90px, 20vh, 140px);
     height: clamp(90px, 20vh, 140px);
+=======
+    font-size: 2em;
+    width: 120px;
+    height: 120px;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     background-color: #3498db;
     color: white;
     border: 4px solid #2980b9;
@@ -498,7 +668,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+=======
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 .level-button:hover {
@@ -507,11 +681,17 @@ body {
 }
 
 .level-button .level-number {
+<<<<<<< HEAD
     font-size: 0.4em;   /* ⬅️ Diminua o tamanho da fonte (ex: de 0.6em para 0.4em) */
     display: block;
     line-height: 1.1;   /* ⬅️ Dê um leve espaço entre linhas */
     padding: 0 5px;     /* ⬅️ Adicione padding para o texto não colar nas bordas */
     text-shadow: 1px 1px 1px rgba(0,0,0,0.4); /* (Opcional) Sombra mais leve */
+=======
+    font-size: 0.6em;
+    display: block;
+    line-height: 1;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 .level-button.locked {
@@ -538,11 +718,15 @@ body {
     background-color: #f39c12;
     border-color: #e67e22;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 #back-to-menu-button:hover {
     background-color: #d35400;
 }
 
+<<<<<<< HEAD
 /* --- AVISO DE ORIENTAÇÃO --- */
 #orientation-warning {
     display: none;
@@ -550,6 +734,15 @@ body {
     inset: 0;
     background-color: #0b0b19;
     z-index: 200;
+=======
+/* --- AVISO DE ORIENTAÇÃO PARA TELAS VERTICAIS --- */
+#orientation-warning {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    inset: 0; /* Ocupa a tela inteira */
+    background-color: #0b0b19;
+    z-index: 200; /* Fica acima de todo o resto */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -568,6 +761,7 @@ body {
     font-size: clamp(1em, 4vw, 1.2em);
 }
 
+<<<<<<< HEAD
 /* Media Query para aviso */
 @media (orientation: portrait) {
     #main-menu,
@@ -580,3 +774,16 @@ body {
         display: flex;
     }
 }
+=======
+/* Media Query que ativa o aviso */
+@media (orientation: portrait) {
+    /* Esconde os menus quando a tela está em pé */
+    #main-menu, #level-select-container, #settings-button {
+        display: none !important;
+    }
+    /* Mostra o aviso */
+    #orientation-warning {
+        display: flex;
+    }
+}
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8

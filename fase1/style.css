@@ -189,13 +189,18 @@ header {
     font-weight: 700;
 }
 
+<<<<<<< HEAD
 /* --- Cronômetro com Sprite --- */
 header > .relative {
     /* Mantém o grid */
+=======
+header > .relative {
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     position: relative;
     display: grid;
     place-items: center;
     height: 100%;
+<<<<<<< HEAD
     /* Novo: Ajuste de largura para acomodar o sprite */
     width: clamp(80px, 8vw, 120px); 
 }
@@ -239,6 +244,19 @@ header > .relative {
 }
 /* --- Fim Cronômetro com Sprite --- */
 
+=======
+}
+
+#timer {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: #FACC15;
+    transform: translateY(10%);
+}
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 
 footer#macaw-message {
     position: absolute;
@@ -537,7 +555,11 @@ footer#macaw-message {
     #verify-button { font-size: clamp(0.9rem, 1.8vw, 1.3rem); padding: clamp(0.3rem, 0.8vh, 0.6rem) clamp(0.8rem, 2.5vw, 1.5rem); }
     #book-button {
         width: clamp(105px, 7.5vw, 110px); /* Ajustado para tablet */
+<<<<<<< HEAD
         top: 30%; /* Ajustado para tablet */
+=======
+        top: 40%; /* Ajustado para tablet */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         /* left: 50% e transform são herdados */
     }
     #book-button:hover { transform: scale(1.1) translateX(-50%); }

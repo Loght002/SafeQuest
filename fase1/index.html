@@ -19,16 +19,28 @@
     </div>
 
     <div id="game-container" class="game-container w-full max-w-7xl h-full max-h-[900px] rounded-2xl shadow-2xl flex flex-col relative overflow-hidden">
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         <div id="start-screen" class="modal absolute inset-0 flex flex-col items-center justify-center z-50">
             <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center">
                 <h1 class="text-5xl font-bold mb-4 text-cyan-400" data-key="safequest_titulo">SafeQuest</h1>
                 <h2 class="text-2xl mb-8" data-key="fase1_subtitulo">Fase 1: Como Montar Cestas de Suprimentos</h2>
+<<<<<<< HEAD
                 <p class="mb-8 max-w-lg" data-key="fase1_descricao">Monte cestas com os alimentos certos da esteira. Arraste e solte para completar o pedido da Arara Azul!</p>
                 <button id="start-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-2xl transition-transform transform hover:scale-105" data-key="btn_comecar">Começar!</button>
             </div>
         </div>
 
+=======
+                <p class="mb-8 max-w-lg" data-key="fase1_descricao">Monte as cestas de acordo com o pedido da Arara Azul! Arraste os alimentos da esteira para os espaços e verifique se acertou.</p>
+                <button id="start-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-2xl transition-transform transform hover:scale-105" data-key="btn_comecar">Começar!</button>
+            </div>
+        </div>
+        
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         <div id="stage-transition-screen" class="modal absolute inset-0 flex-col items-center justify-center z-40 hidden">
             <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center max-w-2xl">
                 <h2 id="stage-title" class="text-4xl font-bold mb-4 text-amber-400"></h2>
@@ -39,7 +51,11 @@
                 <button id="next-stage-button" class="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg text-xl transition-transform transform hover:scale-105" data-key="btn_continuar">Continuar</button>
             </div>
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         <div id="end-screen" class="modal absolute inset-0 flex-col items-center justify-center z-50 hidden">
             <div class="bg-gray-700 p-8 rounded-xl shadow-lg text-white text-center">
                 <h1 id="end-title" class="text-5xl font-bold mb-4" data-key="end_titulo_padrao">Tempo Esgotado!</h1>
@@ -51,11 +67,15 @@
                 <img id="end-macaw-sprite" src="" alt="Arara" class="w-32 h-32 mx-auto mb-4">
                 <div id="stars-container" class="flex justify-center text-6xl mb-6"></div>
                 <p id="end-message" class="text-xl mb-8"></p>
+<<<<<<< HEAD
 
                 <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
                     <button id="restart-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-xl transition-transform transform hover:scale-105" data-key="btn_jogar_novo">Jogar de Novo</button>
                     <button id="back-to-menu-button" data-key="btn_voltar_menu" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-xl transition-transform transform hover:scale-105">Voltar ao Menu</button>
                 </div>
+=======
+                <button id="restart-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-xl transition-transform transform hover:scale-105" data-key="btn_jogar_novo">Jogar de Novo</button>
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
             </div>
         </div>
 
@@ -64,10 +84,21 @@
                 <button id="book-modal-close" class="absolute top-4 right-6 text-5xl transition-colors z-10">&times;</button>
                 <div id="book-pages-container" class="w-full h-full flex gap-4">
                     <div class="page left-page flex-1 flex flex-col justify-between p-4 md:p-6">
+<<<<<<< HEAD
                         <div class="section"></div> <div class="section"></div> <div class="section"></div>
                     </div>
                     <div class="page right-page flex-1 flex flex-col justify-between p-4 md:p-6">
                         <div class="section"></div> <div class="section"></div> <div class="section"></div>
+=======
+                        <div class="section"></div>
+                        <div class="section"></div>
+                        <div class="section"></div>
+                    </div>
+                    <div class="page right-page flex-1 flex flex-col justify-between p-4 md:p-6">
+                        <div class="section"></div>
+                        <div class="section"></div>
+                        <div class="section"></div>
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
                     </div>
                 </div>
                 <div id="book-navigation" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-8">
@@ -77,7 +108,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         <div id="food-detail-modal" class="modal absolute inset-0 items-center justify-center z-50 hidden">
             <div class="bg-gray-800 p-6 rounded-xl shadow-2xl text-white w-11/12 max-w-2xl max-h-[90vh] flex flex-col border-4 border-amber-400/50">
                 <div class="flex justify-between items-center mb-4">
@@ -109,6 +144,7 @@
         <header class="p-1 bg-gray-900/50 flex justify-between items-center text-white z-20 hidden">
             <div id="score-text" class="font-bold"><span data-key="header_pedidos">Pedidos:</span> <span id="score">0</span></div>
             <div id="stage-text" class="font-bold"><span data-key="header_etapa">Etapa</span> <span id="stage-display">1</span>/4</div>
+<<<<<<< HEAD
             <div class="relative grid place-items-center">
     <div id="timer-sprite-container" class="col-start-1 row-start-1">
         <div id="timer" class="font-bold text-yellow-300">01:30</div>
@@ -125,6 +161,23 @@
                 </div>
 
             <div id="area-de-jogo" class="flex flex-col items-center justify-start gap-4 z-20">
+=======
+            
+            <div class="relative grid place-items-center">
+                <div id="timer" class="col-start-1 row-start-1 font-bold text-yellow text-300 translate-y-[10px]">01:30</div>
+            </div>
+            
+        </header>
+        <button id="book-button" data-title-key="livro_titulo_hover" title="Guia de Alimentos" class="transition-transform transform hover:scale-110">
+                <img src="assets/livro-fechado.png" alt="Guia de Alimentos" class="w-60 h-60 object-contain">
+        </button>
+
+        <main class="flex-1 relative hidden">
+            <div id="esteira-container" class="absolute pointer-events-none z-10"></div>
+            
+            <div id="area-de-jogo" class="flex flex-col items-center justify-start gap-4 z-20">
+                
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
                 <div id="order-ticket" class="bg-slate-100/90 p-3 rounded-lg text-center shadow-lg w-full max-w-md backdrop-blur-sm">
                     <h3 class="text-4xl font-bold text-gray-800 mb-2 border-b-2 border-gray-300 pb-1" data-key="pedido_atual">Pedido Atual:</h3>
                     <div id="order-list" class="flex justify-around items-center gap-2">
@@ -142,15 +195,25 @@
 
                 <button id="verify-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-lg text-2xl transition-transform transform hover:scale-105 opacity-50 cursor-not-allowed" disabled data-key="btn_verificar">Verificar</button>
             </div>
+<<<<<<< HEAD
         </main>
 
+=======
+            </main>
+        
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
         <footer id="macaw-message" class="h-24 p-4 flex items-center gap-4 transition-opacity duration-500 opacity-0 z-30">
             <img id="macaw-sprite" src="assets/arara-falando-padrao.png" alt="Arara" class="w-24 h-24 object-contain">
             <div class="bg-white/90 p-3 rounded-lg text-gray-800 shadow-md">
                 <p id="macaw-text" class="font-semibold"></p>
             </div>
         </footer>
+<<<<<<< HEAD
 
     </div> <script src="script.js"></script>
+=======
+    </div>
+    <script src="script.js"></script>
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 </body>
 </html>

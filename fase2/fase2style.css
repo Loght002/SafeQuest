@@ -4,6 +4,7 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
     background: #2a3a4a;
+<<<<<<< HEAD
     touch-action: none; 
 }
 
@@ -11,12 +12,18 @@ body {
    Removido 'width: 100%', 'height: 100vh', e 'border-radius: 0'.
    Adicionado as regras de "contain" da Fase 1.
 */
+=======
+    touch-action: none; /* <-- ADIÇÃO: Impede o navegador de rolar a página ou dar zoom com o toque */
+}
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .game-container {
     background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/cenario_fase2.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-color: #1f2937;
+<<<<<<< HEAD
 
     /* Regras da Fase 1 para manter o aspect ratio */
     aspect-ratio: 16 / 9; 
@@ -26,6 +33,12 @@ body {
     height: auto;
     
     /* As classes do Tailwind (flex, shadow, etc.) já cuidam do resto */
+=======
+    /* aspect-ratio no HTML garante a proporção 16/9 */
+    width: 100%;
+    height: 100vh; /* Ocupa a altura total da viewport em telas pequenas */
+    border-radius: 0; /* Remove bordas em celular */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 
 .modal {
@@ -44,8 +57,13 @@ body {
 
 .trash-item {
     position: absolute;
+<<<<<<< HEAD
     width: clamp(40px, 5vw, 64px); /* <-- ADICIONADO clamp() */
     height: clamp(40px, 5vw, 64px); /* <-- ADICIONADO clamp() */
+=======
+    width: 64px; 
+    height: 64px;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     cursor: grab;
     user-select: none;
     transition: transform 0.2s ease, opacity 0.3s ease;
@@ -92,8 +110,13 @@ body {
 }
 
 .bin {
+<<<<<<< HEAD
     width: clamp(70px, 8vw, 96px);  /* <-- ADICIONADO clamp() */
     height: clamp(85px, 10vw, 120px); /* <-- ADICIONADO clamp() */
+=======
+    width: 96px; 
+    height: 120px;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     transition: all 0.2s ease;
     background-size: contain;
     background-position: center;
@@ -104,7 +127,11 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+<<<<<<< HEAD
     font-size: clamp(0.6rem, 1vw, 0.75em); /* <-- ADICIONADO clamp() */
+=======
+    font-size: 0.75em;
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     font-weight: bold;
     color: transparent; 
     padding: 5px;
@@ -113,7 +140,11 @@ body {
 }
 
 .item-label {
+<<<<<<< HEAD
     font-size: clamp(0.65rem, 1.2vw, 0.75rem); /* <-- ADICIONADO clamp() */
+=======
+    font-size: 0.75rem; 
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
     color: #fff;
     font-weight: 500;
     text-align: center;
@@ -150,33 +181,125 @@ body {
 }
 
 /* --- Sprites das Lixeiras (MODIFICADO PARA ACESSIBILIDADE) --- */
+<<<<<<< HEAD
+=======
+
+/* Fallback (e Padrão):
+   Define a imagem padrão. O seletor [data-color-mode="default"]
+   terá prioridade se o JS funcionar, mas isso garante que
+   as lixeiras apareçam mesmo se o JS falhar.
+*/
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_padrao.png'); }
 .bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_padrao.png'); }
 .bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_padrao.png'); }
 .bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_padrao.png'); }
 .bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_padrao.png'); }
 .bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_padrao.png'); }
+<<<<<<< HEAD
+=======
+
+/* Modo Padrão (default) - Seletor explícito */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 [data-color-mode="default"] .bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_padrao.png'); }
 [data-color-mode="default"] .bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_padrao.png'); }
 [data-color-mode="default"] .bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_padrao.png'); }
 [data-color-mode="default"] .bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_padrao.png'); }
 [data-color-mode="default"] .bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_padrao.png'); }
 [data-color-mode="default"] .bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_padrao.png'); }
+<<<<<<< HEAD
+=======
+
+/* Modo Alto Contraste (TEA) */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 [data-color-mode="high-contrast"] .bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_tea.png'); }
 [data-color-mode="high-contrast"] .bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_tea.png'); }
 [data-color-mode="high-contrast"] .bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_tea.png'); }
 [data-color-mode="high-contrast"] .bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_tea.png'); }
 [data-color-mode="high-contrast"] .bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_tea.png'); }
 [data-color-mode="high-contrast"] .bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_tea.png'); }
+<<<<<<< HEAD
+=======
+
+/* Modo Daltonismo (colorblind-safe) */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 [data-color-mode="colorblind-safe"] .bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_daltonismo.png'); }
 [data-color-mode="colorblind-safe"] .bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_daltonismo.png'); }
 [data-color-mode="colorblind-safe"] .bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_daltonismo.png'); }
 [data-color-mode="colorblind-safe"] .bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_daltonismo.png'); }
 [data-color-mode="colorblind-safe"] .bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_daltonismo.png'); }
 [data-color-mode="colorblind-safe"] .bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_daltonismo.png'); }
+<<<<<<< HEAD
 
 
 /* --- ESTILOS DO LIVRO/GUIA (CORRIGIDO PARA GRID 3X6 COMPACTO) --- */
+=======
+/* --- Fim do Bloco Modificado --- */
+
+
+/* ------------------------------------------- */
+/* AJUSTES PARA TELAS PEQUENAS (Mobile/Portrait) */
+/* ------------------------------------------- */
+@media (max-width: 768px) {
+    
+    .game-container {
+        max-width: 100vw;
+        height: 100vh;
+    }
+    
+    /* 2. Diminui o tamanho das lixeiras e rótulos */
+    #bins-container {
+        right: 2%; 
+        bottom: 5%; 
+        width: 160px; /* Largura menor para caber na lateral */
+    }
+    
+    .bin-grid-wrapper {
+        gap: 5px; /* Reduz o espaçamento */
+        padding: 5px;
+    }
+    
+    .bin {
+        width: 70px; /* Diminui o tamanho da lixeira */
+        height: 85px; 
+    }
+    
+    .item-label {
+        font-size: 0.6rem; /* Diminui o rótulo */
+        max-width: 70px;
+    }
+
+    /* 3. Diminui o tamanho do lixo */
+    .trash-item {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* 4. Ajusta o Sprite da Arara (Macaw Message) */
+    #macaw-message {
+        left: 2%;
+        max-width: 70%; /* Ocupa mais espaço horizontal */
+        padding: 8px;
+    }
+    
+    #macaw-message img {
+        width: 60px; /* Sprite menor */
+        height: 60px;
+    }
+    
+    /* 5. Ajusta o botão do Guia de Reciclagem */
+    #book-button {
+        top: 80px; /* Move para cima */
+        left: 10%;
+        width: 45px !important; 
+        height: 45px !important; 
+    }
+}
+
+
+/* --- ESTILOS DO LIVRO/GUIA (CORRIGIDO PARA GRID 3X6 COMPACTO) --- */
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .book-container {
 	background-image: url('assets/livro-aberto.png');
 	background-size: 100% 100%;
@@ -184,36 +307,68 @@ body {
 	background-position: center;
 	aspect-ratio: 16 / 9;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .book-container #book-modal-close {
 	color: #a06b3e;
 }
 .book-container #book-modal-close:hover {
 	color: #6b4c2d;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 #book-pages-container {
 	transition: opacity 0.3s ease-in-out;
 }
 #book-pages-container.fade-out {
 	opacity: 0;
 }
+<<<<<<< HEAD
+=======
+
+/* NOVO: Garante que a página seja um container Flex para as seções */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .page {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 
     flex-grow: 1; 
 }
+<<<<<<< HEAD
 .page .section {
+=======
+
+.page .section {
+    /* Propriedades de base para a linha */
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 	min-height: 20%; 
 	display: flex; 
 	flex-direction: column; 
     justify-content: flex-start;
     gap: 0px; 
     margin-bottom: 0; 
+<<<<<<< HEAD
     margin-top: 0; 
 }
 .page .section:first-child {
     margin-top: 15px; 
 }
+=======
+    margin-top: 0; /* Por padrão, sem margem */
+}
+
+/* CORREÇÃO CHAVE: Aplica a margem superior APENAS na primeira seção */
+.page .section:first-child {
+    /* Aumente este valor para mover mais para baixo */
+    margin-top: 15px; 
+}
+
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .section .category-title {
 	font-size: 1.25rem;
 	font-weight: 700;
@@ -222,6 +377,7 @@ body {
 	padding-bottom: 0.25rem;
 	margin-bottom: 0.5rem;
 }
+<<<<<<< HEAD
 .section .items-container {
     display: grid;
 	grid-template-columns: repeat(3, 1fr); 
@@ -231,6 +387,29 @@ body {
     width: 100%;
     padding-top: 40px; 
 }
+=======
+
+/* Uso de CSS Grid e flex-grow: 0 para layout 3x3 compacto */
+/* Uso de CSS Grid e flex-grow: 0 para layout 3x3 compacto */
+/* Uso de CSS Grid e flex-grow: 0 para layout 3x3 compacto */
+.section .items-container {
+    display: grid;
+	grid-template-columns: repeat(3, 1fr); /* 3 colunas por seção (linha) */
+	
+    /* IMPEDE O CRESCIMENTO VERTICAL (Elimina o espaço abaixo dos itens) */
+	flex-grow: 0; 
+    
+    /* Reduz o espaçamento entre as células (horizontal e vertical) */
+    gap: 2px; 
+    
+    align-items: start;
+    width: 100%;
+    
+    /* CORREÇÃO CHAVE: AUMENTA O DESLOCAMENTO INTERNO PARA 20px */
+    padding-top: 40px; /* Valor ajustado para mover mais para baixo */
+}
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .book-item {
 	cursor: pointer;
 	transition: transform 0.2s ease, background-color 0.2s ease;
@@ -241,10 +420,18 @@ body {
 	align-items: center;
     width: auto; 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .book-item:hover {
 	transform: scale(1.05);
 	background-color: rgba(200, 156, 109, 0.2);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 .book-item img {
 	width: 50px; 
 	height: 50px;
@@ -259,6 +446,10 @@ body {
     margin-top: 2px;
     margin-bottom: 0;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 #book-navigation .nav-button {
 	background-color: #a06b3e; color: white; padding: 8px 16px; border-radius: 8px;
 	font-weight: bold; transition: background-color 0.2s;
@@ -273,8 +464,13 @@ body {
 	top: 150px; 
 	left: 20px; 
 	z-index: 30; 
+<<<<<<< HEAD
     width: clamp(60px, 10vw, 150px); /* <-- ADICIONADO clamp() */
     height: clamp(60px, 10vw, 150px); /* <-- ADICIONADO clamp() */
+=======
+	width: 150px !important; 
+	height: 150px !important; 
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
 #book-button img {
 	width: 100%;
@@ -288,6 +484,7 @@ body {
 	width: auto; 
 	max-width: 50%; 
 	z-index: 30;
+<<<<<<< HEAD
 }
 
 /* === ADICIONADO DA FASE 1: AVISO DE ORIENTAÇÃO === */
@@ -462,4 +659,6 @@ body {
     .book-item p { font-size: 0.65rem; }
     #book-navigation { gap: 1rem; bottom: 10px; }
     #book-navigation .nav-button { padding: 6px 10px; font-size: 0.8rem; }
+=======
+>>>>>>> 1e29ed259d7cfc1a081e9058b6deb5b2e2b2d9e8
 }
