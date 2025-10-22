@@ -1,0 +1,582 @@
+/* --- :ROOT (VARIÁVEIS DE COR PARA TEMAS) --- */
+:root {
+    --bg-image: url('assets/cenario-menu-padrão.png');
+    --bg-color: #000;
+    --title-color: white;
+    --title-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    --button-glow-color: #00aaff;
+    --star-opacity: 1;
+}
+
+body.high-contrast {
+    --bg-image: none;
+    --bg-color: #000;
+    --title-color: #ffff00;
+    --title-shadow: 2px 2px 0px #fff;
+    --button-glow-color: #ffff00;
+    --star-opacity: 0;
+}
+
+body.colorblind-safe {
+    filter: hue-rotate(180deg) saturate(1.2);
+    --button-glow-color: #ffa500;
+}
+
+/* --- GERAL E FUNDO (BASE MOBILE-FIRST) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Luckiest Guy', cursive;
+    background-color: var(--bg-color);
+}
+
+body {
+    background-image: var(--bg-image);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: background-pan-zoom 40s linear infinite;
+    transition: filter 0.5s ease;
+}
+
+/* --- EFEITOS DE FUNDO --- */
+.background-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: var(--star-opacity);
+    transition: opacity 0.5s ease;
+}
+
+#stars-small,
+#stars-medium,
+#stars-large {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    border-radius: 50%;
+}
+
+/* estrelas pequenas */
+#stars-small {
+    animation: animate-stars 150s linear infinite, twinkle-1 2s ease-in-out infinite;
+    box-shadow: -1vw 77vh #fff, 59vw 70vh #fff, -3vw 95vh #fff, 93vw 3vh #fff, 75vw 61vh #fff,
+        24vw 89vh #fff, 3vw 69vh #fff, 62vw 14vh #fff, 17vw 52vh #fff, 9vw 58vh #fff, 73vw 9vh #fff,
+        54vw 46vh #fff, 30vw 98vh #fff, 89vw 59vh #fff, 8vw 28vh #fff, 5vw 6vh #fff, 63vw 41vh #fff,
+        34vw 16vh #fff, 91vw 33vh #fff, 51vw 9vh #fff, 72vw 43vh #fff, 18vw 91vh #fff, 45vw 32vh #fff,
+        88vw 80vh #fff, 67vw 21vh #fff, 99vw 50vh #fff, 33vw 15vh #fff, 5vw 88vh #fff, 82vw 64vh #fff,
+        49vw 19vh #fff, 21vw 4vh #fff, 96vw 99vh #fff, 40vw 55vh #fff, 78vw 3vh #fff, 13vw 27vh #fff,
+        37vw 73vh #fff, 69vw 88vh #fff, 94vw 12vh #fff, 28vw 67vh #fff, 55vw 93vh #fff, 2vw 39vh #fff,
+        80vw 7vh #fff, 15vw 49vh #fff, 60vw 2vh #fff, 42vw 82vh #fff, 84vw 35vh #fff, 26vw 58vh #fff,
+        98vw 72vh #fff, 10vw 8vh #fff, 47vw 47vh #fff;
+}
+
+#stars-medium {
+    width: 2px;
+    height: 2px;
+    animation: animate-stars 100s linear infinite, twinkle-2 3s ease-in-out infinite;
+    box-shadow: 20vw 30vh #fff, 80vw 90vh #fff, 5vw 50vh #fff, 95vw 10vh #fff, 50vw 5vh #fff,
+        15vw 85vh #fff, 70vw 20vh #fff, 30vw 65vh #fff, 90vw 75vh #fff, 40vw 40vh #fff, 60vw 15vh #fff,
+        25vw 95vh #fff, 85vw 55vh #fff, 3vw 25vh #fff, 77vw 80vh #fff, 48vw 35vh #fff, 10vw 70vh #fff,
+        65vw 45vh #fff, 33vw 88vh #fff, 98vw 30vh #fff, 22vw 5vh #fff, 73vw 60vh #fff, 18vw 42vh #fff,
+        57vw 98vh #fff, 8vw 12vh #fff;
+}
+
+#stars-large {
+    width: 3px;
+    height: 3px;
+    animation: animate-stars 50s linear infinite, twinkle-3 4s ease-in-out infinite;
+    box-shadow: 10vw 20vh #fff, 88vw 70vh #fff, 40vw 80vh #fff, 75vw 15vh #fff, 25vw 60vh #fff,
+        95vw 40vh #fff, 55vw 55vh #fff, 5vw 90vh #fff, 68vw 30vh #fff, 30vw 5vh #fff, 80vw 95vh #fff,
+        15vw 45vh #fff, 50vw 25vh #fff, 90vw 85vh #fff, 20vw 75vh #fff;
+}
+
+/* estrelas cadentes */
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8);
+    opacity: 0;
+}
+
+.star::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.6), transparent);
+    transform-origin: left center;
+    transform: translateY(1px) rotate(-45deg);
+}
+
+.star:nth-of-type(1) {
+    animation: fly-by-1 7s linear infinite 1s;
+}
+
+.star:nth-of-type(2) {
+    animation: fly-by-2 8s linear infinite 3s;
+}
+
+.star:nth-of-type(3) {
+    animation: fly-by-3 6s linear infinite 5s;
+}
+
+/* --- LAYOUT DO MENU PRINCIPAL (REVISADO) --- */
+.menu-container,
+#settings-button {
+    position: relative;
+    z-index: 10;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-title {
+    color: var(--title-color);
+    font-size: clamp(3.5rem, 20vh, 8rem);
+    line-height: 1;
+    margin-bottom: 30px;
+    text-shadow: var(--title-shadow);
+    animation: title-drop-in 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+        title-glow 2.5s ease-in-out infinite 1.5s;
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+#play-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: clamp(180px, 35vh, 300px);
+    animation: float 3s ease-in-out infinite, fadeIn 1.5s ease-out;
+}
+
+#play-button img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    animation: button-glow 3s ease-in-out infinite;
+}
+
+#play-button:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px #00ffff) brightness(1.1);
+}
+
+#play-button.clicked {
+    animation: button-click-effect 0.4s ease;
+}
+
+#settings-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: clamp(50px, 10vh, 70px);
+}
+
+#settings-button img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease;
+    animation: slow-rotate 10s linear infinite;
+}
+
+#settings-button:hover img {
+    transform: scale(1.15) rotate(360deg);
+    animation-duration: 2s;
+}
+
+/* --- MENU DE CONFIGURAÇÕES (MODAL) --- */
+#settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+#settings-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 90%;
+    max-width: 400px;
+    background-color: #2c3e50;
+    border: 4px solid #ecf0f1;
+    border-radius: 20px;
+    padding: 20px;
+    z-index: 100;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#settings-overlay.hidden,
+#settings-modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#settings-modal.hidden {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+.settings-title {
+    font-size: clamp(1.8em, 5vw, 2.2em);
+    text-shadow: 2px 2px 2px #000;
+}
+
+.setting-option p {
+    margin-bottom: 10px;
+    font-size: clamp(1em, 4vw, 1.2em);
+}
+
+.settings-btn {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: clamp(1em, 4vw, 1.2em);
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #2980b9;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.settings-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.close-btn {
+    background-color: #e74c3c;
+    border-color: #c0392b;
+    margin-top: 10px;
+}
+
+.close-btn:hover {
+    background-color: #c0392b;
+}
+
+.color-modes {
+    display: flex;
+    gap: 10px;
+}
+
+.color-mode-btn {
+    flex: 1;
+    padding: 8px;
+    font-size: clamp(0.8em, 3vw, 0.9em);
+}
+
+.color-mode-btn.active {
+    background-color: #f1c40f;
+    color: #000;
+    border-color: #f39c12;
+}
+
+/* ======================================================= */
+/* --- AJUSTES DE RESPONSIVIDADE (REVISADO) --- */
+/* ======================================================= */
+
+/* ❌ ERRO CORRIGIDO AQUI: havia um seletor quebrado (_select-title) */
+@media (max-height: 400px) and (orientation: landscape) {
+    .game-title {
+        margin-bottom: 15px;
+    }
+
+    .level-select-title {
+        margin-bottom: 20px;
+    }
+
+    .level-grid {
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    #settings-button {
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+/* Mantém os ajustes do Modal */
+@media (max-width: 480px) {
+    .color-modes {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 600px) {
+    #settings-modal {
+        max-width: 500px;
+    }
+    .settings-title {
+        font-size: 2.5em;
+    }
+}
+
+@media (min-width: 1024px) {
+    #settings-modal {
+        max-width: 550px;
+        gap: 20px;
+        padding: 30px;
+    }
+    .settings-btn {
+        font-size: 1.3em;
+        padding: 15px;
+    }
+    .setting-option p {
+        font-size: 1.4em;
+    }
+}
+
+/* --- KEYFRAMES (ANIMAÇÕES) --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes background-pan-zoom {
+    0% { background-size: 110%; background-position: 50% 50%; }
+    25% { background-position: 45% 55%; }
+    50% { background-size: 120%; background-position: 50% 50%; }
+    75% { background-position: 55% 45%; }
+    100% { background-size: 110%; background-position: 50% 50%; }
+}
+
+@keyframes animate-stars {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2000px); }
+}
+
+@keyframes twinkle-1 { 50% { opacity: 0.4; } }
+@keyframes twinkle-2 { 50% { opacity: 0.6; } }
+@keyframes twinkle-3 { 50% { opacity: 0.8; } }
+
+@keyframes fly-by-1 {
+    0% { opacity: 0; top: -10%; left: 40%; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; top: 70%; left: 110%; }
+}
+
+@keyframes fly-by-2 {
+    0% { opacity: 0; top: 20%; left: -10%; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; top: 90%; left: 100%; }
+}
+
+@keyframes fly-by-3 {
+    0% { opacity: 0; top: 50%; left: -10%; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; top: 110%; left: 80%; }
+}
+
+@keyframes title-drop-in {
+    0% { transform: translateY(-100px) scale(0.8); opacity: 0; }
+    70% { transform: translateY(10px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes title-glow {
+    0%, 100% { text-shadow: var(--title-shadow), 0 0 10px #fff; }
+    50% { text-shadow: var(--title-shadow), 0 0 25px #fff; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes button-glow {
+    0%, 100% { filter: drop-shadow(0 0 10px var(--button-glow-color)); }
+    50% { filter: drop-shadow(0 0 20px var(--button-glow-color)); }
+}
+
+@keyframes button-click-effect {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9) rotate(-5deg); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slow-rotate {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- TELA DE SELEÇÃO DE FASES --- */
+#level-select-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 800px;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#level-select-container.hidden,
+#main-menu.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+    position: absolute;
+}
+
+.level-select-title {
+    color: var(--title-color);
+    font-size: clamp(2.5rem, 15vh, 6rem);
+    line-height: 1;
+    margin-bottom: 40px;
+    text-shadow: var(--title-shadow);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+.level-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(10px, 2.5vh, 25px);
+    margin-bottom: 40px;
+}
+
+.level-button {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: clamp(1.4rem, 4vh, 2rem);
+    width: clamp(90px, 20vh, 140px);
+    height: clamp(90px, 20vh, 140px);
+    background-color: #3498db;
+    color: white;
+    border: 4px solid #2980b9;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.level-button:hover {
+    transform: scale(1.1);
+    background-color: #2980b9;
+}
+
+.level-button .level-number {
+    font-size: 0.4em;   /* ⬅️ Diminua o tamanho da fonte (ex: de 0.6em para 0.4em) */
+    display: block;
+    line-height: 1.1;   /* ⬅️ Dê um leve espaço entre linhas */
+    padding: 0 5px;     /* ⬅️ Adicione padding para o texto não colar nas bordas */
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4); /* (Opcional) Sombra mais leve */
+}
+
+.level-button.locked {
+    background-color: #7f8c8d;
+    border-color: #606f71;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+    opacity: 0.7;
+}
+
+.level-button.locked:hover {
+    transform: scale(1);
+    background-color: #7f8c8d;
+}
+
+.level-button .lock-icon {
+    font-size: 1.2em;
+    position: absolute;
+    opacity: 0.9;
+}
+
+#back-to-menu-button {
+    max-width: 300px;
+    background-color: #f39c12;
+    border-color: #e67e22;
+}
+
+#back-to-menu-button:hover {
+    background-color: #d35400;
+}
+
+/* --- AVISO DE ORIENTAÇÃO --- */
+#orientation-warning {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: #0b0b19;
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Luckiest Guy', cursive;
+    color: white;
+}
+
+#orientation-warning h2 {
+    font-size: clamp(1.8em, 5vw, 2.2em);
+    margin-bottom: 1rem;
+}
+
+#orientation-warning p {
+    font-size: clamp(1em, 4vw, 1.2em);
+}
+
+/* Media Query para aviso */
+@media (orientation: portrait) {
+    #main-menu,
+    #level-select-container,
+    #settings-button {
+        display: none !important;
+    }
+
+    #orientation-warning {
+        display: flex;
+    }
+}

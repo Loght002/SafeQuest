@@ -1,0 +1,465 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: #2a3a4a;
+    touch-action: none; 
+}
+
+/* === MODIFICADO === 
+   Removido 'width: 100%', 'height: 100vh', e 'border-radius: 0'.
+   Adicionado as regras de "contain" da Fase 1.
+*/
+.game-container {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/cenario_fase2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #1f2937;
+
+    /* Regras da Fase 1 para manter o aspect ratio */
+    aspect-ratio: 16 / 9; 
+    max-width: 98vw;      
+    max-height: 98vh;     
+    width: auto;          
+    height: auto;
+    
+    /* As classes do Tailwind (flex, shadow, etc.) já cuidam do resto */
+}
+
+.modal {
+    background-color: rgba(0,0,0,0.7);
+}
+
+.timer-warning {
+    animation: timer-pulse 1s infinite;
+}
+@keyframes timer-pulse {
+    0%, 100% { transform: scale(1); color: #ef4444; }
+    50% { transform: scale(1.1); color: #f87171; }
+}
+
+/* --- ESTILOS DO JOGO DE RECICLAGEM --- */
+
+.trash-item {
+    position: absolute;
+    width: clamp(40px, 5vw, 64px); /* <-- ADICIONADO clamp() */
+    height: clamp(40px, 5vw, 64px); /* <-- ADICIONADO clamp() */
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 15;
+}
+
+
+.trash-item:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+/* --- AJUSTES DE LIXEIRAS PARA RESPONSIVIDADE --- */
+
+#bins-container {
+    position: absolute;
+    top: 1%;
+    right: 5%; 
+    bottom: 5%; 
+    width: 200px; 
+    height: auto; 
+    padding: 0; 
+    z-index: 15;
+    margin: 0;
+    background-color: transparent; 
+}
+
+.bin-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; 
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.bin-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px; 
+}
+
+.bin {
+    width: clamp(70px, 8vw, 96px);  /* <-- ADICIONADO clamp() */
+    height: clamp(85px, 10vw, 120px); /* <-- ADICIONADO clamp() */
+    transition: all 0.2s ease;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9; 
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: clamp(0.6rem, 1vw, 0.75em); /* <-- ADICIONADO clamp() */
+    font-weight: bold;
+    color: transparent; 
+    padding: 5px;
+    line-height: 1.1;
+    cursor: default;
+}
+
+.item-label {
+    font-size: clamp(0.65rem, 1.2vw, 0.75rem); /* <-- ADICIONADO clamp() */
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9); 
+    max-width: 90px;
+}
+
+/* Animações e Feedback */
+.bin.active {
+    opacity: 1;
+}
+
+.bin.drag-over {
+    transform: scale(1.05); 
+    filter: drop-shadow(0 0 15px #fff);
+}
+
+.bin.correct-bin {
+    animation: correct-bin-animation 0.7s ease-out;
+}
+@keyframes correct-bin-animation {
+    0% { transform: scale(1); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.bin.wrong-bin {
+    animation: wrong-bin-animation 0.5s ease;
+}
+@keyframes wrong-bin-animation {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
+
+/* --- Sprites das Lixeiras (MODIFICADO PARA ACESSIBILIDADE) --- */
+.bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_padrao.png'); }
+.bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_padrao.png'); }
+.bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_padrao.png'); }
+.bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_padrao.png'); }
+.bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_padrao.png'); }
+.bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_padrao.png'); }
+[data-color-mode="default"] .bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_padrao.png'); }
+[data-color-mode="default"] .bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_padrao.png'); }
+[data-color-mode="default"] .bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_padrao.png'); }
+[data-color-mode="default"] .bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_padrao.png'); }
+[data-color-mode="default"] .bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_padrao.png'); }
+[data-color-mode="default"] .bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_padrao.png'); }
+[data-color-mode="high-contrast"] .bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_tea.png'); }
+[data-color-mode="high-contrast"] .bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_tea.png'); }
+[data-color-mode="high-contrast"] .bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_tea.png'); }
+[data-color-mode="high-contrast"] .bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_tea.png'); }
+[data-color-mode="high-contrast"] .bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_tea.png'); }
+[data-color-mode="high-contrast"] .bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_tea.png'); }
+[data-color-mode="colorblind-safe"] .bin[data-category="organicos"]  { background-image: url('assets/lixeira_marrom_daltonismo.png'); }
+[data-color-mode="colorblind-safe"] .bin[data-category="papel"] 	 { background-image: url('assets/lixeira_azul_daltonismo.png'); }
+[data-color-mode="colorblind-safe"] .bin[data-category="metais"] 	 { background-image: url('assets/lixeira_amarela_daltonismo.png'); }
+[data-color-mode="colorblind-safe"] .bin[data-category="vidros"] 	 { background-image: url('assets/lixeira_verde_daltonismo.png'); }
+[data-color-mode="colorblind-safe"] .bin[data-category="plasticos"] { background-image: url('assets/lixeira_vermelha_daltonismo.png'); }
+[data-color-mode="colorblind-safe"] .bin[data-category="rejeitos"] 	 { background-image: url('assets/lixeira_cinza_daltonismo.png'); }
+
+
+/* --- ESTILOS DO LIVRO/GUIA (CORRIGIDO PARA GRID 3X6 COMPACTO) --- */
+.book-container {
+	background-image: url('assets/livro-aberto.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	aspect-ratio: 16 / 9;
+}
+.book-container #book-modal-close {
+	color: #a06b3e;
+}
+.book-container #book-modal-close:hover {
+	color: #6b4c2d;
+}
+#book-pages-container {
+	transition: opacity 0.3s ease-in-out;
+}
+#book-pages-container.fade-out {
+	opacity: 0;
+}
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    flex-grow: 1; 
+}
+.page .section {
+	min-height: 20%; 
+	display: flex; 
+	flex-direction: column; 
+    justify-content: flex-start;
+    gap: 0px; 
+    margin-bottom: 0; 
+    margin-top: 0; 
+}
+.page .section:first-child {
+    margin-top: 15px; 
+}
+.section .category-title {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #6b4c2d;
+	border-bottom: 2px solid #c89c6d;
+	padding-bottom: 0.25rem;
+	margin-bottom: 0.5rem;
+}
+.section .items-container {
+    display: grid;
+	grid-template-columns: repeat(3, 1fr); 
+	flex-grow: 0; 
+    gap: 2px; 
+    align-items: start;
+    width: 100%;
+    padding-top: 40px; 
+}
+.book-item {
+	cursor: pointer;
+	transition: transform 0.2s ease, background-color 0.2s ease;
+    padding: 0.1rem; 
+	border-radius: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    width: auto; 
+}
+.book-item:hover {
+	transform: scale(1.05);
+	background-color: rgba(200, 156, 109, 0.2);
+}
+.book-item img {
+	width: 50px; 
+	height: 50px;
+	object-fit: contain;
+}
+.book-item p {
+	font-size: 0.75rem;
+	text-align: center;
+	color: #3d3021;
+	font-weight: 600;
+    line-height: 1;
+    margin-top: 2px;
+    margin-bottom: 0;
+}
+#book-navigation .nav-button {
+	background-color: #a06b3e; color: white; padding: 8px 16px; border-radius: 8px;
+	font-weight: bold; transition: background-color 0.2s;
+}
+#book-navigation .nav-button:hover { background-color: #6b4c2d; }
+#book-navigation .nav-button:disabled { background-color: #cccccc; cursor: not-allowed; opacity: 0.5; }
+#book-navigation #page-indicator { color: white; }
+
+/* Posição dos elementos fixos */
+#book-button { 
+	position: absolute; 
+	top: 150px; 
+	left: 20px; 
+	z-index: 30; 
+    width: clamp(60px, 10vw, 150px); /* <-- ADICIONADO clamp() */
+    height: clamp(60px, 10vw, 150px); /* <-- ADICIONADO clamp() */
+}
+#book-button img {
+	width: 100%;
+	height: 100%;
+}
+
+#macaw-message {
+	position: absolute;
+	bottom: 0; 
+	left: 10px;
+	width: auto; 
+	max-width: 50%; 
+	z-index: 30;
+}
+
+/* === ADICIONADO DA FASE 1: AVISO DE ORIENTAÇÃO === */
+#orientation-warning {
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background-color: #111827; 
+    color: white; 
+    z-index: 100;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    padding: 1rem;
+}
+#orientation-warning h2 { 
+    font-size: 1.875rem; 
+    font-weight: 700; 
+    margin-bottom: 0.5rem; 
+}
+#orientation-warning p { 
+    font-size: 1.125rem; 
+    max-width: 28rem; 
+}
+#orientation-warning svg { 
+    width: 6rem; 
+    height: 6rem; 
+    margin-bottom: 1.5rem; 
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; 
+    color: #22D3EE; 
+}
+
+/* === ADICIONADO DA FASE 1: REGRA DE ORIENTAÇÃO === */
+@media (orientation: portrait) {
+    #game-container { 
+        display: none; 
+    }
+    #orientation-warning { 
+        display: flex; 
+    }
+}
+
+
+/* === SUBSTITUÍDO: Media queries antigas por novas mais completas === */
+
+/* --- Telas Médias (Tablets ~1024px Largura) --- */
+@media (max-width: 1024px) and (orientation: landscape) {
+    /* Ajusta lixeiras */
+    #bins-container { width: 180px; }
+    .bin-grid-wrapper { gap: 8px; padding: 8px; }
+    .bin { width: 80px; height: 100px; }
+    .item-label { font-size: 0.7rem; }
+    
+    /* Ajusta lixo */
+    .trash-item { width: 56px; height: 56px; }
+
+    /* Ajusta Arara */
+    #macaw-message { max-width: 55%; }
+    #macaw-message img { width: 75px; height: 75px; }
+    #macaw-text { font-size: 0.85rem; }
+
+    /* Ajusta Livro */
+    #book-button { top: 100px; left: 15px; width: 100px !important; height: 100px !important; }
+    .book-item img { width: 45px; height: 45px; }
+    .book-item p { font-size: 0.7rem; }
+
+    /* Ajusta Header */
+    header { padding: 0.5rem 1.25rem; }
+    header .text-xl { font-size: 1.1rem; } /* Lixos: 0 */
+    header .text-3xl { font-size: 1.5rem; } /* Lixos: 0 */
+    header #stage-label { font-size: 1.5rem; } /* Etapa 1/4 */
+    header #timer { font-size: 2.25rem; } /* 01:30 */
+    
+    /* Ajusta Modais */
+    .modal h1 { font-size: 2.5rem; } /* 5xl -> 2.5rem */
+    .modal h2 { font-size: 1.5rem; } /* 2xl -> 1.5rem */
+    .modal p { font-size: 1rem; } /* text-lg / text-xl */
+    .modal #final-action-button, .modal #back-to-menu-button { font-size: 1.1rem; padding: 0.6rem 1.5rem; }
+    .modal #stars-container { font-size: 2.5rem; } /* 6xl -> 2.5rem */
+    #stage-transition-screen img { width: 6rem; height: 6rem; } /* w-32 -> w-24 */
+}
+
+/* --- Telas Pequenas (Celulares ~768px Largura) --- */
+@media (max-width: 768px) and (orientation: landscape) {
+    /* REMOVIDO a regra problemática: 
+       .game-container { max-width: 100vw; height: 100vh; } 
+       Isso força o aspect ratio a ser mantido.
+    */
+    
+    /* Ajusta lixeiras */
+    #bins-container {
+        right: 2%; 
+        bottom: 5%; 
+        width: 160px; 
+    }
+    .bin-grid-wrapper {
+        gap: 5px; 
+        padding: 5px;
+    }
+    .bin {
+        width: 70px; 
+        height: 85px; 
+    }
+    .item-label {
+        font-size: 0.6rem; 
+        max-width: 70px;
+    }
+
+    /* Ajusta lixo */
+    .trash-item {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Ajusta Arara */
+    #macaw-message {
+        left: 2%;
+        max-width: 65%; /* Ocupa mais espaço horizontal */
+        padding: 8px;
+        bottom: 5px;
+    }
+    #macaw-message img {
+        width: 60px; /* Sprite menor */
+        height: 60px;
+    }
+    #macaw-text { font-size: 0.75rem; }
+    
+    /* Ajusta o botão do Guia de Reciclagem */
+    #book-button {
+        top: 80px; /* Move para cima */
+        left: 10px;
+        width: 60px !important; 
+        height: 60px !important; 
+    }
+
+    /* Ajusta Header */
+    header { padding: 0.25rem 1rem; }
+    header .text-xl { font-size: 0.9rem; } /* Lixos: 0 */
+    header .text-3xl { font-size: 1.1rem; } /* Lixos: 0 */
+    header #stage-label { font-size: 1.1rem; } /* Etapa 1/4 */
+    header .bg-gray-800 { padding: 0.25rem 0.75rem; }
+    header #timer { font-size: 1.75rem; } /* 01:30 */
+    
+    /* Ajusta Modais (Start, End, Transition) */
+    .modal > div { padding: 1.25rem; } /* p-8 -> p-5 */
+    .modal h1 { font-size: 1.8rem; margin-bottom: 0.75rem; } /* 5xl -> 1.8rem */
+    .modal h2 { font-size: 1.25rem; margin-bottom: 1.5rem; } /* 2xl -> 1.25rem */
+    .modal p { font-size: 0.9rem; margin-bottom: 1.5rem; } /* text-lg / text-xl */
+    .modal #start-button,
+    .modal #final-action-button, 
+    .modal #back-to-menu-button { 
+        font-size: 1rem; padding: 0.5rem 1.25rem; 
+    }
+    .modal #stars-container { font-size: 2rem; margin-bottom: 1rem; } /* 6xl -> 2rem */
+    
+    #stage-transition-screen h2 { font-size: 1.5rem; }
+    #stage-transition-screen img { width: 5rem; height: 5rem; margin-right: 1rem;} /* w-32 -> w-20 */
+    #stage-transition-screen p { font-size: 0.9rem; }
+    #stage-transition-screen #next-stage-button { margin-top: 1rem; font-size: 1rem; }
+    
+    /* Ajusta Modal de Detalhes do Item */
+    #item-detail-modal > div { padding: 1rem; }
+    #item-detail-name { font-size: 1.5rem; } /* 3xl -> 1.5rem */
+    #item-detail-close { font-size: 2rem; } /* 4xl -> 2rem */
+    #item-detail-img { width: 5rem; height: 5rem; } /* w-32 -> w-20 */
+    #item-detail-modal h3 { font-size: 1.1rem; } /* 2xl -> 1.1rem */
+    #item-detail-modal p { font-size: 0.85rem; }
+    
+    /* Ajusta Modal do Livro */
+    .book-item img { width: 35px; height: 35px; }
+    .book-item p { font-size: 0.65rem; }
+    #book-navigation { gap: 1rem; bottom: 10px; }
+    #book-navigation .nav-button { padding: 6px 10px; font-size: 0.8rem; }
+}

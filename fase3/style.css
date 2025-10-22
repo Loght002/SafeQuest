@@ -1,0 +1,306 @@
+/* === VARIÁVEIS DE SPRITES (CONTROLADAS VIA JS) === */
+:root {
+ /* Imagens padrão (default) como fallback */
+ --sprite-panel: url('assets/Painel elétrico interno - cor padrão.png');
+ --sprite-tape: url("assets/Fita isolante - cor padrão.png");
+ --sprite-fio-normal: url('assets/fio consertado - padrão.png');
+ --sprite-fio-fixed: url('assets/fio_concertado_padrao.png');
+ --sprite-fio-broken: url('assets/fio faiscado - cor padrão.png');
+}
+
+/* === CONFIGURAÇÕES GERAIS === */
+html, body {
+ height: 100vh;
+ margin: 0;
+ background: radial-gradient(circle at center, #1a1635 0%, #0b0b19 100%);
+ font-family: 'Roboto', sans-serif;
+ color: #fff;
+ overflow: hidden;
+}
+
+#game-wrapper {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100%;
+ padding: 1rem;
+ box-sizing: border-box;
+}
+
+/* === RESPONSIVIDADE DO CONTÊINER PRINCIPAL === */
+#game-container {
+ aspect-ratio: 9 / 8;
+ border: 4px solid #3e1bdb;
+ background: linear-gradient(180deg, #20264a 0%, #14182b 100%);
+ border-radius: 12px;
+ box-shadow: 0 0 50px rgba(121, 82, 255, 0.3);
+ overflow: hidden;
+ position: relative;
+ max-width: min(900px, 95vw);
+ max-height: calc(100vh - 2rem);
+ width: 100%;
+}
+
+/* === UI SUPERIOR === */
+#ui-top {
+ position: absolute;
+ top: 15px;
+ left: 25px;
+ right: 25px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ z-index: 10;
+ pointer-events: none;
+ font-family: 'Orbitron', sans-serif;
+}
+
+#score-container, #timer-container {
+ font-size: clamp(1rem, 3vw, 1.8rem);
+ text-shadow: 0 0 8px #000, 0 0 10px #6a3cff;
+}
+
+#timer.low-time {
+ color: #ff4040;
+ animation: pulse 1s infinite;
+}
+@keyframes pulse {
+ 0%,100% { transform: scale(1); text-shadow: 0 0 5px red; }
+ 50% { transform: scale(1.1); text-shadow: 0 0 20px red; }
+}
+
+/* === PAINEL ELÉTRICO E FIOS === */
+#electrical-panel {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-image: var(--sprite-panel);
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: center;
+}
+
+/* AJUSTE AQUI */
+.wire {
+ width: 6%; /* Aumentado de 6% */
+ height: 30%; /* Aumentado de 25% */
+ position: absolute;
+ background-size: 100% 100%;
+ background-repeat: no-repeat;
+ transition: filter 0.2s ease, transform 0.2s;
+}
+
+.wire.normal {
+ background-image: var(--sprite-fio-normal);
+}
+
+.wire.fixed {
+ background-image: var(--sprite-fio-fixed);
+ filter: brightness(1.2);
+}
+
+.wire.broken {
+ background-image: var(--sprite-fio-broken);
+ animation: spark 0.3s infinite;
+}
+
+.wire.broken.drag-over {
+ filter: brightness(1.8) drop-shadow(0 0 15px #ffffff);
+ transform: scale(1.05);
+}
+
+@keyframes spark {
+ 0%,100% { filter: brightness(1); }
+ 50% { filter: brightness(2) drop-shadow(0 0 5px #ffcc00); }
+}
+
+/* === UI INFERIOR === */
+#ui-bottom {
+ position: absolute;
+ bottom: 10px;
+ left: 10px;
+ right: 10px;
+ display: flex;
+ justify-content: space-between;
+ align-items: flex-end;
+ z-index: 10;
+ pointer-events: none;
+}
+
+#scientist-container {
+ display: flex;
+ align-items: center;
+ gap: 15px;
+ pointer-events: all;
+}
+
+#scientist-sprite {
+ width: clamp(50px, 10vw, 90px);
+ filter: drop-shadow(0 0 8px #1af0ff);
+}
+
+#scientist-speech-bubble {
+ background: rgba(20, 15, 45, 0.8);
+ border: 2px solid #4b32ff;
+ padding: 12px 16px;
+ border-radius: 12px;
+ max-width: 60%;
+ font-size: 1.1em;
+ position: relative;
+ backdrop-filter: blur(6px);
+ box-shadow: 0 0 15px rgba(80, 60, 255, 0.4);
+}
+
+#scientist-speech-bubble::after {
+ content: '';
+ position: absolute;
+ left: -10px;
+ top: 20px;
+ width: 0;
+ height: 0;
+ border-top: 10px solid transparent;
+ border-bottom: 10px solid transparent;
+ border-right: 10px solid #4b32ff;
+}
+
+#tape-container {
+ text-align: center;
+ pointer-events: all;
+}
+
+#tape {
+ width: clamp(60px, 10vw, 80px);
+ height: clamp(60px, 10vw, 80px);
+ background-image: var(--sprite-tape);
+ background-size: contain;
+ background-repeat: no-repeat;
+ margin-bottom: 5px;
+ cursor: grab;
+ transition: transform 0.2s;
+}
+
+#tape:active {
+ cursor: grabbing;
+ transform: scale(1.1);
+}
+
+/* === MODAIS (ESTILO ÚNICO PARA INÍCIO E FIM) === */
+.modal {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.85);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ z-index: 100;
+ color: white;
+ text-align: center;
+ font-family: 'Orbitron', sans-serif;
+ padding: 1rem;
+ box-sizing: border-box;
+}
+
+.modal-content {
+ background: linear-gradient(180deg, #2a2f64 0%, #14182b 100%);
+ padding: clamp(20px, 5vw, 40px);
+ border-radius: 15px;
+ border: 3px solid #4b32ff;
+ box-shadow: 0 0 30px rgba(121, 82, 255, 0.5);
+ width: 100%;
+ max-width: 550px;
+}
+
+.modal-content h1 {
+ font-size: clamp(2.5rem, 8vw, 3.5rem);
+ margin-bottom: 1rem;
+}
+
+.modal-content h2 {
+ font-size: clamp(1.2rem, 4vw, 1.8rem);
+ margin-bottom: 1.5rem;
+}
+
+.modal-content p {
+ font-size: clamp(1rem, 2.5vw, 1.2rem);
+ line-height: 1.6;
+ font-family: 'Roboto', sans-serif;
+}
+
+.modal-content button {
+ background: linear-gradient(90deg, #48bb78, #38a169);
+ color: white;
+ font-size: clamp(1rem, 3vw, 1.2rem);
+ font-family: 'Orbitron', sans-serif;
+ padding: 15px 30px;
+ border: none;
+ border-radius: 10px;
+ cursor: pointer;
+ transition: transform 0.2s, box-shadow 0.2s;
+ margin-top: 20px;
+}
+
+.modal-content button:hover {
+ transform: scale(1.05);
+ box-shadow: 0 0 15px #48bb78;
+}
+
+#restart-button {
+ background: linear-gradient(90deg, #5f3df7, #9a66ff);
+}
+#restart-button:hover {
+ box-shadow: 0 0 15px #9a66ff;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.modal-buttons button {
+  margin-top: 0; /* Remove a margem individual para o container controlar */
+}
+
+#back-to-menu-button {
+  background: linear-gradient(90deg, #718096, #4a5568); /* Cor cinza/neutra */
+}
+
+#back-to-menu-button:hover {
+  box-shadow: 0 0 15px #718096;
+}
+
+.hidden {
+ display: none;
+}
+
+/* === ALERTA DE ORIENTAÇÃO PARA TELAS VERTICAIS === */
+#orientation-warning {
+display: none;
+position: fixed;
+inset: 0;
+background-color: #0b0b19;
+z-index: 200;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 20px;
+font-family: 'Orbitron', sans-serif;
+}
+
+@media (orientation: portrait) and (max-height: 850px) {
+  #game-wrapper, .modal {
+    display: none !important;
+  }
+  
+  #orientation-warning {
+    display: flex;
+  }
+}
